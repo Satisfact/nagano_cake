@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'homes/top'
-  get 'homes/about'
+  root 'homes#top'
+  get 'homes/about' => 'homes#about'
   devise_for :admins, controllers:{
     sessions: 'admins/sessions'
   }
   get 'admins' => 'admins/homes#top'
-  root 'homes#top'
   #下記都度
   namespace :admins do
     resources :customers, only: [:index, :show, :edit, :update]

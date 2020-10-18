@@ -11,7 +11,7 @@
 
   <body>
 
-    <header>
+    <header class="">
       <nav>
         <ul>
           <% if customer_signed_in? %>
@@ -27,7 +27,7 @@
             <li>ジャンル</li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
           <% else %>
-            <li>about</li>
+            <li><%= link_to "about", homes_about_path %></li>
             <li>商品一覧</li>
             <li><%= link_to "新規登録", new_customer_registration_path %></li>
             <li><%= link_to "ログイン", new_customer_session_path %></li>
