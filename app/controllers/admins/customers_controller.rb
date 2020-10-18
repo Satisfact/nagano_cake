@@ -1,4 +1,4 @@
-class Admin::CustomersController < ApplicationController
+class Admins::CustomersController < ApplicationController
   def index
   end
 
@@ -6,5 +6,8 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
+  end
+  
+  def update
   end
 end
