@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+
+  devise_for :admins, controllers:{
+    sessions: 'admins/sessions'
+  }
+  get 'admins' => 'admins/homes#top'
+  #下記都度
+  namespace :admins do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
+
   devise_for :customers
+  resources :cart_items, only: [:create, :show, :update, :destroy]
+  delete 'cart_items' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
- get 'show' => 'items#show'
- get 'edit' => 'items#edit'
- get 'new' => 'items#new'
- get 'index' => 'items#index'
- get 'top' => 'homes#top'
- get 'home/about' => 'homes#about', as: 'about'
+
+  resources :genres, only: [:index, :create, :edit, :update]
+
 end
