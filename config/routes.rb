@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   #下記都度
   namespace :admins do
     get '/', :to => 'homes#top'
-    resources :customers, only: [:index, :show, :edit]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
   devise_for :customers
   resources :cart_items, only: [:create, :show, :update, :destroy]
-  delete 'cart_items' => 'cart_items#destroy'
+  delete 'cart_items' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :genres, only: [:index, :create, :edit, :update]
 end
