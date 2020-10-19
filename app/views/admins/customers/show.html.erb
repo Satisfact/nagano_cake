@@ -1,47 +1,49 @@
 <main>
-<container>
-<div class="row">
-    <div class="col-xs-offset-1">
-        <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
-    </div>
-</div>
-<div class="row">
-<div class="col-xs-offset-1">
-<table>
-    <thead></thead>
-    <tbody>
-        <tr>
-            <th>顧客ID</th>
-            <th><%= @customer.id %></th>
-        </tr>
-        <tr>
-            <th>氏名</th>
-            <th><%= @customer.last_name %> <%= @customer.first_name %></th>
-        </tr>
-         <tr>
-            <th>フリガナ</th>
-            <th><%= @customer.last_kana %> <%= @customer.first_kana%></th>
-        </tr>
-         <tr>
-            <th>郵便番号</th>
-            <th><%= @customer.postal_code %></th>
-        </tr>
-        <tr>
-            <th>住所</th>
-            <th><%= @customer.address %></th>
-        </tr>
-         <tr>
-            <th>電話番号</th>
-            <th><%= @customer.telephone_number %></th>
-        </tr>
-        <tr>
-            <th>メールアドレス</th>
-            <th><%= @customer.email%></th>
-        </tr>
-    </tbody>
-</table>
-<%= link_to "編集する", edit_admins_customer_path, class: "btn btn-primary" %>
-<!--%= link_to "注文一覧を見る", , class: "btn btn-primary" %-->
+    <container>
+        <div class="row">
+            <div class="col-xs-offset-1">
+                <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-1">
+                <table class="table">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th>顧客ID</th>
+                            <th><%= @customer.id %> <%= @customer.is_deleted ? '友好会員':'退会済み' %></th> 
+                        </tr>
+                        <tr>
+                            <th>氏名</th>
+                            <th><%= @customer.last_name %> <%= @customer.first_name %></th>
+                        </tr>
+                        <tr>
+                            <th>フリガナ</th>
+                            <th><%= @customer.last_kana %> <%= @customer.first_kana%></th>
+                        </tr>
+                        <tr>
+                            <th>郵便番号</th>
+                            <th><%= @customer.postal_code %></th>
+                        </tr>
+                        <tr>
+                            <th>住所</th>
+                            <th><%= @customer.address %></th>
+                        </tr>
+                        <tr>
+                            <th>電話番号</th>
+                            <th><%= @customer.telephone_number %></th>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <th><%= @customer.email %></th>
+                        </tr>
+                    </tbody>
+                </table>
+                <%= link_to "編集する", edit_admins_customer_path, class: "btn btn-primary" %>
+                <!--%= link_to "注文一覧を見る", _path, class: "btn btn-primary" %-->
 
-</div>
-</div>
+            </div>
+        </div>
+    </container>
+</main>
