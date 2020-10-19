@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_064408) do
+ActiveRecord::Schema.define(version: 2020_10_18_091548) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 2020_10_17_064408) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.boolean "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name"
+    t.string "image_id"
+    t.text "introduction"
+    t.boolean "is_active", default: true
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
