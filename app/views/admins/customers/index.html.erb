@@ -1,7 +1,7 @@
 <main>
 <container>
 <div class="row">
-    <div class="col-xs-offset-2">
+    <div class="col-xs-offset-1">
     <h1>会員一覧</h1>
     </div>
 </div>
@@ -20,11 +20,10 @@
     <tbody>
         <% @customers.each do |customer| %>
             <th><%= customer.id %></th>
-            <td><%= customer.first_neme %><%= customer.last_neme%></td>
+            <td><%= customer.first_name %><%= customer.last_name %></td>
             <td><%= customer.email %></td>
             <td><%= customer.is_deleted %></td>
         <% end %> 
-        
     </tbody>
 </table>
 </div>

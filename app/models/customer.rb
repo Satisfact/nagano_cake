@@ -6,4 +6,5 @@ class Customer < ApplicationRecord
          
   #注文履歴との紐付け
   has_many :orders, dependent: :destroy
+  has_many :addresses
 end
