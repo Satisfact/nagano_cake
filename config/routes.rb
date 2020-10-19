@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   #管理者用ログインルート
   devise_for :admins, controllers:{
     sessions: 'admins/sessions'
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, except: [:delete]
   end
-  
+
   #顧客側
   devise_for :customers
   resources :cart_items, only: [:create, :show, :update, :destroy]
@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   resources :items, only: [:top, :index, :show]
   root 'items#top'
   get 'homes/about' => 'homes#about'
+  get 'edit' => 'customers#edit'
 end
