@@ -4,5 +4,6 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  
+  #注文履歴との紐付け
+  has_many :orders, dependent: :destroy
 end
