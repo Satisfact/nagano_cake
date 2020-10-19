@@ -8,3 +8,14 @@
 Admin.create!(
   email: 'test@test.com',
   password: 'testtest')
+  
+Customer.create!(
+  email: 'customer@test.com',
+  password: 'customer',
+  last_name: '名字',
+  first_name: '名前',
+  last_kana: 'ミョウジ',
+  first_kana: 'ナマエ',
+  postal_code: '0000000',
+  address: '〇〇〇〇〇〇〇〇〇〇〇〇',
+  telephone_number: '00000000000')
