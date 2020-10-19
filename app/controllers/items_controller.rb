@@ -1,33 +1,22 @@
 class ItemsController < ApplicationController
-    def top
-        @quantity = Item.count
-        #kaminariつける
-    end
-    
-    def index
-        #kaminariつける
-        @sweet_items = Item.all
-    end
-    
-    def show
-        @sweet_item = Item.find(params[:id])
-        @cart_item = CartItem.new
-        
-    end
-    
-    #下管理者
-    #このコントローラーをコピーして管理者のところに貼り付ける？（タイトル注意）
+#管理者用別途作成
+ def top
+  @genres = Genre.all
+  #kaminariつける
+  @sweet_items = Item.all
+ end
+ 
+ def index
+  @quantity = Item.count
+  #kaminariつける
+  @sweet_items = Item.all
+  @genres = Genre.all
+ end
+ 
+ def show
+  @sweet_item = Item.find(params[:id])
+  @cart_item = Cart.new
+  @genres = Genre.all 
+ end
 
-    def new
-    end
-
-    def edit
-    end
-
-    def create
-    end
-
-    def update
-    end
-    
 end
