@@ -1,4 +1,4 @@
-class CostumersController < ApplicationController
+class CustomersController < ApplicationController
   #before_action :authenticate_costmer!
   def show
 
@@ -12,7 +12,7 @@ class CostumersController < ApplicationController
 
   end
 
-  
+
 
   # ユーザーの退会（論理削除）=> "物理削除"ではないためupdateを使用している。
   def destroy
