@@ -23,7 +23,10 @@ Rails.application.routes.draw do
 
 
   resources :items, only: [:top, :index, :show]
+  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   root 'items#top'
   get 'homes/about' => 'homes#about'
 
+  get 'edit' => 'customers#edit'
 end
+
