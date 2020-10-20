@@ -19,3 +19,4 @@ Customer.create!(
   postal_code: '0000000',
   address: '〇〇〇〇〇〇〇〇〇〇〇〇',
   telephone_number: '00000000000')
+  
