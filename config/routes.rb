@@ -28,5 +28,10 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
 
   get 'edit' => 'customers#edit'
+<<<<<<< HEAD
 end
 
+=======
+
+end
+>>>>>>> a883f125f864da21a6a14b5429015dff89a036e0
