@@ -1,4 +1,5 @@
 class CartItem < ApplicationRecord
     
-    #attachment_image
+    belongs_to :item
+    
 end
