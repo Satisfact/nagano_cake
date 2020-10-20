@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   root 'items#top'
   get 'homes/about' => 'homes#about'
   get 'edit' => 'customers#edit'
+
 end
