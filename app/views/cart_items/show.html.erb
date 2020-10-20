@@ -7,13 +7,12 @@
 </div>
 <div class="row">
     <div class="col-xs-offset-1 col-xs-10">
-       
-<table class="table table-bordered"> 
+<table class="table table-bordered">
     
     <tr>
         <thead>
-            <th>商品名</th>
-            <th>単価(税込)</th>
+            <th></th>
+            <th></th> <!-- *1.1-->
             <th>数量</th>
             <th>小計</th>
             <th></th>
@@ -21,18 +20,22 @@
         <tbody>
             <!--each do cart_items-->
                 <tr>
-                    <th>画像と名前</th>
-                    <td>値段</td>
+                    <th><%= @cart_item.item %></th>
+                    <td><%= @cart_item.price %></td>
+                    <!--%= form_with model:@cart_item %>-->
                     <td>数量</td>
                     <td>合計金額</td>
-                    <td>削除ボタン</td>
+                    <td><%= link_to "削除する", cart_item_path(@cart_item.id), mathod: :delete %></td>
                 </tr>
         </tbody>
         
     </tr>
 </table>
-
-<btn>買い物を続ける</btn>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-offset-1 col-xs-10">
+<%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
 <div class="col-xs-3">
 <table class="table table-bordered">
     <thead></thead>
@@ -44,7 +47,8 @@
     </tbody>
 </table>
 </div>
-<btn>情報入力に進む</btn> 
 </div>
 </div>
+
+
 </container>
