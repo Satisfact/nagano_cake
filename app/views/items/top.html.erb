@@ -1,29 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-3">
-      <table class="table table-bordered">
-        <tr>
-          <th>
-            ジャンル検索
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <!--eachでジャンル名を持ってくる？-->
-            <ul>
-              <li>
-                ジャンル１
-              </li>
-              <li>
-                ジャンル２
-              </li>
-            </ul>
-            <!--ここまで？もしかしたらthの中かも。レイアウトみながら調整！-->
-          </th>
-        </tr>
-      </table>
-    </div>
-
+    <!--ジャンル一覧パーシャル-->
+    <%= render 'items/genrebox', genres: @genres %>
+    
     <div class="col-xs-9">
       <img src="" alt="background-img"><br>
       <p>ようこそ、NaganoCakeへ！<br>
@@ -31,18 +10,23 @@
         会員でない方も商品の閲覧はできますが、<br>
         購入には会員登録が必要になります。
       </p>
-    </div>
-    <div class="col-xs-9">
-      <h3>オススメ商品<span>(全<%= @quantity %>件)</span></h3>
-      <div class="col">
-        <!--each文で回す-->
-        <img src="" alt="item-img1">
-        <p>item-name１</p>
-        <p>item-price１</p>
+      <h3>オススメ商品</h3>
+      <div class="row">
+        <% @sweet_items.each do |item| %>
+          <div class="col-3"><!--floatleft?-->
+            <%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, size: "200x200", fallback: "no-image.jpg" %>
+            <% end %>
+            <p><%= item.name %></p>
+            <p>¥<%= item.price %></p>
+          </div>
+        <% end %>
       </div>
         <!--４つほど。残りはリンク-->
     </div>
     <!--商品詳細ページへ-->
-    <%= link_to "もっと見る", items_path %>
+    <div class="pull-right">
+      <%= link_to "もっと見る", items_path %>
+    </div>
   </div>
 </div>
