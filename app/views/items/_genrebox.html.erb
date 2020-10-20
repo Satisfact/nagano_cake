@@ -9,7 +9,8 @@
         <% genres.each do |genre| %>
           <tr>
             <td>
-              <%= link_to genre.name, genres_path(genre.id) %>
+              <!--管理者側のgenreに行ってしまう-->
+              <%= link_to genre.name, admins_genres_path(genre.id) %>
             </td>
           </tr>
         <% end %>
