@@ -18,7 +18,7 @@
         <%= form_for @cart_item, url: cart_items_path(@cart_item) do |f| %>
         <%= f.hidden_field :item_id, :value => @sweet_item.id %>
         <%= f.number_field :number_of_items, placeholder: "個数選択", min:1, max: 10 %>
-        <%= f.submit "カートに入れる", class: 'btn btn-primary'
+        <%= f.submit "カートに入れる", class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
