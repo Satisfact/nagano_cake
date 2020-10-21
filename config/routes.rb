@@ -16,15 +16,27 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create, :show, :update, :destroy]
   delete 'cart_items' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+
+
   resources :items, only: [:top, :index, :show]
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   root 'items#top'
   get 'homes/about' => 'homes#about'
+
   get 'edit' => 'customers#edit'
+
+
+end
+
+
+
+
   
   #注文関連ビュー確認用
   #get 'orders/show' => 'orders#show'
-end
+
 #顧客用
   #get 'orders/new'　新規注文
   #get 'orders/create'　注文作成
@@ -38,3 +50,4 @@ end
   #get 'admins/orders/show　注文詳細
   #patch 'admins/orders/update'　注文更新
 #制作ステータス変更のコントローラーもいる
+

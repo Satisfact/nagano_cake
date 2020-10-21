@@ -1,4 +1,5 @@
 <body>
+  <p id="notice"><%= notice %></p>
   <h1>配送登録/一覧</h1>
   <%= form_with model:@address, url:addresses_path, local:true do |f| %>
   <p><%= f.label :郵便番号（ハイフンなし） %>
