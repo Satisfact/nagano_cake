@@ -25,9 +25,9 @@
         <td><%= item.id %></td>
         <td><%= item.name %></td>
         <td><%= item.price %></td>
-        <td><%= item.genre %></td>
-        <td><%= item.sale_status %></td>
-        <td><%= link_to "商品詳細", admin_item_path(item) %></td>
+        <td><%= item.genre_id %></td>
+        <td><%= item.is_active %></td>
+        <td><%= link_to "商品詳細", admins_item_path(item) %></td>
       </tr>
       <% end %>
     </tbody>
