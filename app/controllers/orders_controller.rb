@@ -3,6 +3,15 @@ class OrdersController < ApplicationController
   #before_action :customer_is_deleted
   #注文情報入力
   def new
+    @customer = current_customer
+    # if @customer.cart_items.blank?
+    #   flash[:alert] = "カートに商品がありません"
+    #   redirect_to cart_item_path(cart_item)
+    # else
+    #   @order = Oreder.new
+    #   @address = @customer.address
+    #   @send_address = Address.new(customer_id: @customer.id)
+    # end
   end
   
   def create

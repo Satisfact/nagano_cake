@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   resources :items, only: [:top, :index, :show]
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/confirm' => 'orders#confirm' #注文確認
+  get 'orders/complete' => 'orders/complete' #注文完了
   root 'items#top'
   get 'homes/about' => 'homes#about'
 
@@ -40,8 +43,8 @@ end
 #顧客用
   #get 'orders/new'　新規注文
   #get 'orders/create'　注文作成
-  #get 'orders/confirm'　注文確認
-  #get 'orders/complete'　注文完了
+  #get 'orders/confirm'　
+  #get 'orders/complete'　
   #get 'orders/index'　注文履歴一覧
   #get 'orders/show'　注文履歴
 
