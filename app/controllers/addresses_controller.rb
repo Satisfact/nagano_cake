@@ -6,10 +6,14 @@ class AddressesController < ApplicationController
   end
 
   def create
-    address = Address.new(address_params)
-    address.customer_id = current_customer.id
-    if address.save
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+    if @address.save
       redirect_to request.referer, notice: "配送先新規登録しました"
+    else
+      @customer = current_customer
+      @addresses = @customer.addresses
+      render 'index'
     end
   end
 
@@ -21,10 +25,14 @@ class AddressesController < ApplicationController
   end
 
   def update
-    address = Address.find(params[:id])
-    address.customer_id = current_customer.id
-    if address.update(address_params)
+    @address = Address.find(params[:id])
+    @address.customer_id = current_customer.id
+    if @address.update(address_params)
       redirect_to addresses_path, notice: "配送先を編集しました"
+    else
+      @customer = current_customer
+      @addresses = @customer.addresses
+      render 'index'
     end
   end
 
