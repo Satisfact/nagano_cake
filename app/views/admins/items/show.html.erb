@@ -9,13 +9,13 @@
     <!-- 商品登録フォーム -->
     <div class="col-xs-8">
       <h4 style="margin-bottom: 30px;">商品名
-        <%= @item.item_name %>
+        <%= @item.name %>
       </h4>
 
       <div style="display: flex;">
         <h4 style="margin: 0 30px 30px 0;">商品説明</h4>
         <div style="overflow-wrap: break-word;　word-wrap: break-word; width: 300px;">
-          <%= @item.explanation %>
+          <%= @item.introduction %>
         </div>
       </div>
 
@@ -24,11 +24,11 @@
         </h4>
 
         <h4 style="margin-bottom: 30px;">税別価格
-          <%= @item.unit_price_without_tax%>円
+          <%= @item.price%>円
         </h4>
 
         <h4 style="margin-bottom: 30px;">販売ステータス
-          <%= @item.sale_status%>
+          <%= @item.is_active%>
         </h4>
 
         <%= button_to '編集する',edit_admin_item_path(@item.id), method: :get ,class: "btn btn-primary ", style: "margin-left:70%;"%>

@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   def index
-    @addresses = Address.all
+    @customer = current_customer
+    @addresses = @customer.addresses
     @address = Address.new
   end
 
@@ -12,12 +13,23 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
+    if @address.customer != current_customer
+      redirect_to addresses_path
+    end
   end
 
   def update
+    address = Address.find(params[:id])
+    address.customer_id = current_customer.id
+    address.update(address_params)
+    redirect_to addresses_path
   end
 
   def destroy
+    address = Address.find(params[:id])
+    address.destroy
+    redirect_to request.referer
   end
 
   private
