@@ -6,17 +6,18 @@
     <div class="col-xs-9">
       <div class="row">
         <div class="col-xs-7">
-          <%= attachment_image_tag @sweet_item, :image, size: "300x300", fallback: "no-image.jpg" %>
+          <%= attachment_image_tag @sweet_item, :image, size: "300x300", fallback: "no_image.jpg" %>
         </div>
         <div class="col-xs-5">
           <h3><%= @sweet_item.name %></h3>
 		      <p><%= @sweet_item.introduction%></p>
-		      <h4><%= (@product.price * 1.1).round %>円 (税込み)</h4>
+		      <h4><%= (@sweet_item.price * 1.1).round %>円 (税込み)</h4>
         </div>
         <%= form_for @cart_item, url: cart_items_path(@cart_item) do |f| %>
-        <%= f.hidden_field :item_id, :value => @sweet_item.id %>
-        <%= f.number_field :number_of_items, placeholder: "個数選択", min:1, max: 10 %>
-        <%= f.submit "カートに入れる", class: 'btn btn-primary' %>
+          <%= f.hidden_field :item_id, :value => @sweet_item.id %>
+          <%= f.number_field :amount, placeholder: "個数選択", min:1, max: 10 %>
+          <%= f.submit "カートに入れる", class: 'btn btn-primary' %>
+        <% end %>
       </div>
     </div>
   </div>
