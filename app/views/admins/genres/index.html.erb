@@ -1,8 +1,8 @@
 <body>
-  <p id="notice"><%= notice %></p>
   <h2>ジャンル一覧・追加</h2>
   <p>
   <%= form_with model:@genre, url:admins_genres_path, local:true do |f| %>
+  <%= render 'layouts/errors', model: @genre %>
   <%= f.label :ジャンル %>
   <%= f.text_field :name %>
   <label>

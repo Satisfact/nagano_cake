@@ -1,7 +1,7 @@
 <body>
-  <p id="notice"><%= notice %></p>
   <h1>配送登録/一覧</h1>
   <%= form_with model:@address, url:addresses_path, local:true do |f| %>
+  <%= render 'layouts/errors', model: @address %>
   <p><%= f.label :郵便番号（ハイフンなし） %>
   <%= f.text_field :postcode %></p>
   <p><%= f.label :住所 %>
