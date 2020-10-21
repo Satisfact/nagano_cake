@@ -20,7 +20,7 @@
       </div>
 
         <h4 style="margin-bottom: 30px;">ジャンル
-          <%= @item.genre.name %>
+          <%= @item.genre_id %>
         </h4>
 
         <h4 style="margin-bottom: 30px;">税別価格
@@ -31,7 +31,7 @@
           <%= @item.is_active%>
         </h4>
 
-        <%= button_to '編集する',edit_admin_item_path(@item.id), method: :get ,class: "btn btn-primary ", style: "margin-left:70%;"%>
+        <%= button_to '編集する',edit_admins_item_path(@item.id), method: :get ,class: "btn btn-primary ", style: "margin-left:70%;"%>
     </div>
   </div>
 </div>

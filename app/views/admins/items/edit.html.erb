@@ -15,7 +15,7 @@
       <% end %>
       <div class="container">
         <div class="row">
-          <%= form_with model:@item, url:'/admins/items', local:true do |f| %>
+          <%= form_with model:@item, url:admins_item_path(@item.id), local:true do |f| %>
           <div class="col-xs-5">
             <h2>商品編集画面</h2>
             <%= f.attachment_field :image %>
