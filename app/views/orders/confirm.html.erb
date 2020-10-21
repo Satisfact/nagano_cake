@@ -71,10 +71,12 @@
           <th>小計</th>
         </tr>
         <tr>
-          <td><img src="" alt="">cake</td>
-          <td>¥price</td>
-          <td>amount</td>
-          <td>小計</td>
+          <%= @items.each do |item| %>
+            <td><%= attachment_image_tag item, :image, size: "100x100", fallback: "no_image.jpg" %></td>
+            <td><%= (item.item.price * 1.1).round %></td>
+            <td><%= item.amount %></td>
+            <td><%= (item.item.price * 1.1).round * item.amount %></td>
+          <% end %>
         </tr>
       </table>
     </div>
@@ -82,7 +84,7 @@
       <table>
         <tr>
           <th>送料</th>
-          <td>¥111</td>
+          <td>¥800</td>
         </tr>
         <tr>
           <th>商品合計</th>
