@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  #before_action :authenticate!
+  before_action :authenticate_customer!
   #before_action :customer_is_deleted
   #注文情報入力
   def new
@@ -15,42 +15,57 @@ class OrdersController < ApplicationController
   end
   
   def create
+    @order = Order.new(order_params)
+		@customer = current_customer
+		@ads = @customer.addresses
+		#支払い条件
+    @order.pay = params[:order][:pay]
+    #配送先
+    if params[:order][:order_status] == "0" #ご自身の住所
+      @order.postcode = current_customer.postcode
+      @order.address = current_customer.address
+      @order.name = current_customer.name
+    elsif params[:order][:order_status] == "1" #登録済住所から選択
+		  @ad = @ads.find(params[:address][:id])
+      @order.address = @ad.address
+      @order.postcode = @ad.postcode
+      @order.name = @ad.name
+    elsif params[:order][:order_status] == "2" #新しいお届け先
+      @ad = Address.new
+      @ad.customer_id = @customer.id
+      @ad.address = params[:address][:address]
+      @ad.postcode = params[:address][:postcode]
+      @ad.name = params[:address][:name]
+      @ad.save #登録
+      
+      @order.address = params[:address][:address]
+      @order.postcode = params[:address][:postcode]
+      @order.name =  params[:address][:name]
+    end
+    #注文は登録されましたか?
+    if @order.save
+      redirect_to item_order_path
+    end
   end
-
+  #注文確認
   def confirm
-    @order = Order.find(params[:id])
-    @items = @order.ordered_items
+    @cart_items = CartItem.where(customer_id: current_customer.id) 
+    @item = Item.find(params[:item_id])
+    @order = @item.order.new(order_params)
+      
   end
-#   def confirm  
-# @order = Order.new  
-# @cart_items = current_end_user.cart_items  
-# @order.payment = params[:order][:payment]  
-# if params[:order][:address_option] == "0"  
-# @order.postal_code = current_end_user.postal_code  
-# @order.order_address = current_end_user.address  
-# elsif params[:order][:address_option] == "1"  
-# @sta = params[:order][:order_address].to_i  
-# binding.pry  
-# @order_address = Address.find(@sta)  
-# @order.postal_code = @order_address.postal_code  
-# @order.order_address = @order_address.address  
-# @order.dear_name = @order_address.dear_name  
-
-# elsif params[:order][:address_option] == "2"  
-# @order.postal_code = params[:order][:postal_code]  
-# @order.order_address = params[:order][:order_address]  
-# end  
-
-# end  
-
+  #thak you!
   def complete
   end
 
  #注文履歴
   def index
+    @user = User.find(params[:id])
+    @orders = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
   end
   
   private

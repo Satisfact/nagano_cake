@@ -59,22 +59,23 @@
   
   <div class="row">
     <table>
-  <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払い金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-  </tr>
-  <tr>
-    <td>day/day/day</td>
-    <td>どこ県どこ市どこ区hogehoge</td>
-    <td>cake</td>
-    <td>¥11111111</td>
-    <td>making</td>
-    <td><button type="button" class="btn btn-primary btn-sm">表示する</button></td>
-  </tr>
-</table>
+      <tr>
+        <th>注文日</th>
+        <th>配送先</th>
+        <th>注文商品</th>
+        <th>支払い金額</th>
+        <th>ステータス</th>
+        <th>注文詳細</th>
+      </tr>
+      <tr>
+        <%= @orders.each do |order| %>
+        <td><%= oder.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= oder.address %></td>
+        <td><%= oder.item %></td>
+        <td>¥<%= oder.price %></td>
+        <td><%= order.order_status %></td>
+        <td><%= link_to "表示する", item_order_path(order), class:"btn btn-primary btn-sm" %></td>
+      </tr>
+    </table>
   </div>
 </div>

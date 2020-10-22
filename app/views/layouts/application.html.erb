@@ -31,7 +31,8 @@
         <nav>
           <ul class="nav navbar-nav navbar-right link">
             <% if customer_signed_in? %>
-              <li>ようこそ<a href="#">ユーザー名さん</a></li>
+            <!--変数部分を変える。ルートも要確認-->
+              <li>ようこそ<%= link_to @customer,customer_path %> </li>
               <li><a class="btn btn-default" href="#" role="button">マイページ</a></li>
               <li><%= link_to "商品一覧", items_path, class:"btn btn-default btn-sm" %></li>
               <li><a class="btn btn-default" href="#" role="button">カート</a></li>
