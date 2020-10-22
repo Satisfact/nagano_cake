@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   attachment :image
 
   #カート
-
   has_many :cart_items
   #注文商品、詳細
   has_many :orders

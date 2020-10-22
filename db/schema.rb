@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_053519) do
+ActiveRecord::Schema.define(version: 2020_10_22_161548) do
 
   create_table "about_orders", force: :cascade do |t|
     t.integer "item_id"
@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 2020_10_21_053519) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "item_id"
     t.integer "customer_id"
+    t.integer "item_id"
+    t.integer "amount", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "amount"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 2020_10_21_053519) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_kana", null: false
+    t.string "first_kana", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.string "telephone_number", null: false
+    t.boolean "is_deleted", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
