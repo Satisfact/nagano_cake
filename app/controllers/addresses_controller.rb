@@ -30,9 +30,7 @@ class AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to addresses_path, notice: "配送先を編集しました"
     else
-      @customer = current_customer
-      @addresses = @customer.addresses
-      render 'index'
+      render 'edit'
     end
   end
 
