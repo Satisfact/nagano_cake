@@ -37,6 +37,19 @@ Rails.application.routes.draw do
 
 end
 
+
+  #注文関連ビュー確認用
+  #get 'orders/show' => 'orders#show'
+
+#顧客用
+  #get 'orders/new'　新規注文
+  #get 'orders/create'　注文作成
+  #get 'orders/confirm'　注文確認
+  #get 'orders/complete'　注文完了
+  #get 'orders/index'　注文履歴一覧
+  #get 'orders/show'　注文履歴
+
+
 #管理者用
   #get 'admins/orders/index'　注文一覧
   #get 'admins/orders/show　注文詳細

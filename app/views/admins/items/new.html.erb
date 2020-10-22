@@ -7,7 +7,7 @@
       </h4>
       <div id ="error_explanation" class="alert alert-danger">
         <ul>
-          <% @items.errors.full_messages.each do |message| %>
+          <% @item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
           <% end %>
         </ul>
