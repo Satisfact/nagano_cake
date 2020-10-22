@@ -23,8 +23,7 @@ class Admins::GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to admins_genres_path, notice: "ジャンル編集しました"
     else
-      @genres = Genre.all
-      render 'index'
+      render 'edit'
     end
   end
 
