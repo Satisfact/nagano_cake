@@ -1,22 +1,26 @@
 class CustomersController < ApplicationController
-  #before_action :authenticate_costmer!
-  def show
 
+  #before_action :authenticate_costmer!
+
+  def show
+     @customer = current_customer
   end
 
   def edit
-
+     @customer = current_customer
   end
 
   def update
-
+     @customer = current_customer
+     @customer.update(customer_params)
+     redirect_to
   end
 
 
 
-  # ユーザーの退会（論理削除）=> "物理削除"ではないためupdateを使用している。
+
   def destroy
-    #is_deletedカラムにフラグを立てる(defaultはfalse)
+
 
     #ログアウトさせる
 
