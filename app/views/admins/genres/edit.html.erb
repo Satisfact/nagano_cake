@@ -2,7 +2,7 @@
   <h1>ジャンル編集</h1>
   <%= form_with model:@genre, url:admins_genre_path(@genre.id), local:true do |f| %>
   <%= render 'layouts/errors', model: @genre %>
-  <%= f.label :ジャンル %>
+  <%= f.label :name, "ジャンル" %>
   <%= f.text_field :name %>
   <label>
     <%= f.radio_button :is_active, true %>
