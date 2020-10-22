@@ -1,16 +1,18 @@
-
-=======
-<div class="">
-  <p class="">本当に退会しますか？</p>
-  <p class="">
-    退会すると、会員登録情報や<br>
-    これまでの購入履歴が閲覧できなくなります。<br>
-    退会する場合は、「退会する」をクリックしてください。<br>
-  </p>
-
-  <div class="">
-    '退会しない',
-   '退会する',
->>>>>>> 5e93be0d65e06cdb66d97f04a3a073dae47c307c
-  </div>
+<div class="container">
+	<div class="row">
+		<div class="">
+			<div class="">
+				<h4><b>本当に退会しますか？</b></h4>
+			</div>
+			<div class="">
+				<P>退会すると、会員登録情報や</P>
+				<p class=""><strong>これまでの購入履歴が閲覧できなくなります</strong></p>
+				<p>退会する場合は、「退会する」をクリックしてください</p>
+			</div>
+			<div class="">
+				<%= link_to "退会しない", edit_customer_registration_path(current_customer), class: "btn btn-primary quit-btn" %>
+				<%= link_to "退会する", customer_registration_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger quit-btn" %>
+			</div>
+		</div>
+	</div>
 </div>

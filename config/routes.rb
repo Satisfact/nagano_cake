@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:create, :show, :update, :destroy]
   delete 'cart_items' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  resources :customers,only: [:show]
 
 
 
@@ -34,8 +34,12 @@ Rails.application.routes.draw do
 
   root 'items#top'
   get 'homes/about' => 'homes#about'
-
-  get 'edit' => 'customers#edit'
+  
+  #顧客のcustomers
+  get 'edit' => 'customers#edit' #住所変更
+  post 'edit' => 'customers#edit'
+  get 'show' => 'customers#show'
+  get 'delete' => 'customers#delete' #退会
 
 
 end
