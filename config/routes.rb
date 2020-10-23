@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
- 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #顧客情報（マイページ）
   resources :customers,only: [:show, :edit]
   #配送先

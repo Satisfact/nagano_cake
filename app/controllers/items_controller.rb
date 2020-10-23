@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
  end
  
  def index
-  @quantity = Item.count
+  @quantity = Item.where(is_active: true).count
   #kaminariつける（不要？）
   @sweet_items = Item.where(is_active: true).page(params[:page]).per(8)
   @genres = Genre.where(is_active: true)
