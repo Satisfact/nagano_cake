@@ -1,59 +1,53 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <% if @item.errors.any? %>
-      <h4 class="errors-message">
-        項目が記入されてない箇所があります。
-      </h4>
+    <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">　　商品新規登録　　</span></h2>
+  </div>
+  <div class="row">
+    <% if @item.errors.any? %>
+      <h4 class="errors-message">項目が記入されてない箇所があります。</h4>
       <div id ="error_explanation" class="alert alert-danger">
         <ul>
           <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <li><%= message %></li>
           <% end %>
         </ul>
       </div>
-      <% end %>
-      <div class="row">
-      <%= form_with model:@item, url:'/admins/items', local:true do |f| %>
-
-        <div class="col-xs-5">
-          <h2>商品登録画面</h2>
-          <div class="">
-            <%= f.attachment_field :image %>
-          </div>
-          <div class="item-img">
-
-          </div>
-        </div>
-        <div class="col-xs-5 col-xs-offset-2">
-          <table class="new-form-table">
-            <tbody>
-              <tr>
-                <th>商品名</th>
-                <td><%= f.text_field :name, class: "form-control" %></td>
-              </tr>
-              <tr>
-                <th>商品説明</th>
-                <td><%= f.text_area :introduction, class: "form-control" %></td>
-              </tr>
-              <tr>
-                <th>ジャンル</th>
-                <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></td>
-              </tr>
-              <tr>
-                <th>税抜き価格</th>
-                <td><%= f.text_field :price, class: "form-control" %></td>
-              </tr>
-              <tr>
-                <th>販売ステータス</th>
-                <td><%= f.select :is_active, [["販売停止中",0],["販売中",1]], include_blank: "--選択してください--" %></td>
-              </tr>
-            </tbody>
-          </table>
-          <%= f.submit '新規登録', class: "btn btn-success btn-new-register btn-lg" %>
-        </div>
-        <% end %>
+    <% end %>
+  </div>
+  <%= form_with model:@item, url:'/admins/items', local:true do |f| %>
+    <div class="row">
+      <div class="col-sm-3 col-sm-offset-1">
+        <%= f.attachment_field :image %>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <table class="new-form-table">
+          <tbody>
+            <tr>
+              <th>商品名</th>
+              <td><%= f.text_field :name, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th>商品説明</th>
+              <td><%= f.text_area :introduction, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></td>
+            </tr>
+            <tr>
+              <th>税抜き価格</th>
+              <td><%= f.text_field :price, class: "form-control" %>円</td>
+            </tr>
+            <tr>
+              <th>販売ステータス</th>
+              <td><%= f.select :is_active, [["販売停止中",0],["販売中",1]], include_blank: "--選択してください--" %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+    <div class="row">
+      <%= f.submit '新規登録', class: "make col-sm-3 col-sm-offset-8 btn btn-success btn-new-register btn-lg" %>
+    </div>
+  <% end %>
 </div>

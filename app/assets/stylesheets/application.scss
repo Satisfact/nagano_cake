@@ -54,7 +54,7 @@ body{
 }
 .about-img {
   width: 100%; /* 横幅いっぱい */
-  height: 300px; 
+  height: 300px;
   background: image-url('about.jpg');
   background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
   background-position: center; /* 背景画像を中央に配置 */
@@ -78,4 +78,13 @@ body{
 }
 .sukima{
   margin-bottom: 20px;
+}
+.index{
+  margin-bottom: 30px;
+}
+.make{
+  margin-top: 50px;
+}
+.name{
+  color: white;
 }

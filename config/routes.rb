@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   
   #itemsの中にordersを入れる
   resources :items, only: [:top, :index, :show] do
+    #ジャンル
+    get :search, on: :collection
     resources :orders, only: [:new, :index, :create, :show]
     post 'orders/confirm' => 'orders#confirm' #注文確認
     get 'orders/complete' => 'orders/complete' #注文完了
