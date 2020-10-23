@@ -12,14 +12,20 @@ Rails.application.routes.draw do
   end
 
   #顧客側
-  devise_for :customers
-  resources :cart_items, only: [:create, :show, :update, :destroy]
-  delete 'cart_items' => 'cart_items#destroy_all'
+  devise_for :customers, controllers:{
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
+  #カートアイテム
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :customers,only: [:show]
 
-
-
+ 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #顧客情報（マイページ）
+  resources :customers,only: [:show, :edit]
+  #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   
   #itemsの中にordersを入れる
@@ -31,10 +37,6 @@ Rails.application.routes.draw do
   
   root 'items#top'
   get 'homes/about' => 'homes#about'
-
-  get 'edit' => 'customers#edit'
-
-
 end
 
 

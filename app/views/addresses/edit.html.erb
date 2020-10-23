@@ -2,11 +2,11 @@
   <h1>配送先編集</h1>
   <%= form_with model:@address, url:address_path(@address.id), local:true do |f| %>
   <%= render 'layouts/errors', model: @address %>
-  <p><%= f.label :郵便番号（ハイフンなし） %>
+  <p><%= f.label :postcode, "郵便番号（ハイフンなし）" %>
   <%= f.text_field :postcode %></p>
-  <p><%= f.label :住所 %>
+  <p><%= f.label :address, "住所" %>
   <%= f.text_field :address %></p>
-  <p><%= f.label :宛名 %>
+  <p><%= f.label :name, "宛名" %>
   <%= f.text_field :name %></p>
   <%= f.submit '編集する', class: 'btn btn-primary' %>
   <% end %>
