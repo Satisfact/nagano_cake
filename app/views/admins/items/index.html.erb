@@ -1,6 +1,5 @@
 <div class="container takasa">
-
-  <h2>商品一覧</h2>
+  <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">　　商品一覧　　</span></h2>
 
   <div class="text-right index-new">
     <%= link_to new_admins_item_path do %>
@@ -16,18 +15,16 @@
         <th>税抜価格</th>
         <th>ジャンル</th>
         <th>ステータス</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @items.each do |item| %>
       <tr>
-        <td><%= item.id %></td>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.genre_id %></td>
+        <td><%=  item.id %></td>
+        <td><%= link_to item.name, admins_item_path(item.id) %></td>
+        <td><%= item.price.to_s(:delimited) %></td>
+        <td><%= item.genre.name %></td>
         <td><%= item.is_active %></td>
-        <td><%= link_to "商品詳細", admins_item_path(item) %></td>
       </tr>
       <% end %>
     </tbody>

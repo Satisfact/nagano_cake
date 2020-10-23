@@ -4,13 +4,17 @@
     <%= render 'items/genrebox', genres: @genres %>
 
     <div class="col-xs-9">
-      <img src="" alt="background-img"><br>
-      <p>ようこそ、NaganoCakeへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
-        購入には会員登録が必要になります。
-      </p>
-      <h3>オススメ商品</h3>
+      <div class="main-visual">
+        <p><span class="top-text"><strong>ようこそ、NaganoCakeへ！</strong></span><br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+      
+      <h3 class="top-title">
+        <i class="fas fa-coffee"></i>　オススメ商品　<i class="fas fa-coffee"></i>
+      </h3>
       <div class="row">
         <% @sweet_items.each do |item| %>
           <div class="col-md-3"><!--floatleft?-->
@@ -18,7 +22,7 @@
               <%= attachment_image_tag item, :image, size: "200x200", fallback: "no_image.jpg" %>
             <% end %>
             <p><%= item.name %></p>
-            <p>¥<%= item.price %></p>
+            <p>¥<%= item.price.to_s(:delimited) %></p>
           </div>
         <% end %>
       </div>

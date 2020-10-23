@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
- 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #顧客情報（マイページ）
   resources :customers,only: [:show, :edit]
   #配送先
@@ -30,6 +28,8 @@ Rails.application.routes.draw do
   
   #itemsの中にordersを入れる
   resources :items, only: [:top, :index, :show] do
+    #ジャンル
+    get :search, on: :collection
     resources :orders, only: [:new, :index, :create, :show]
     post 'orders/confirm' => 'orders#confirm' #注文確認
     get 'orders/complete' => 'orders/complete' #注文完了
