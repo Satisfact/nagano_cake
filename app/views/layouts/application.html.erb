@@ -4,7 +4,7 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/404e462280.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -32,7 +32,7 @@
           <ul class="nav navbar-nav navbar-right link">
             <% if customer_signed_in? %>
             <!--変数部分を変える。ルートも要確認-->
-              <li>ようこそ<%= link_to @customer,customer_path %> </li>
+              <!--<li>ようこそ link_to @customer.last_name,customer_path %> </li>-->
               <li><a class="btn btn-default" href="#" role="button">マイページ</a></li>
               <li><%= link_to "商品一覧", items_path, class:"btn btn-default btn-sm" %></li>
               <li><a class="btn btn-default" href="#" role="button">カート</a></li>
