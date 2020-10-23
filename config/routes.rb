@@ -12,12 +12,15 @@ Rails.application.routes.draw do
   end
 
   #顧客側
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   devise_for :customers, controllers:{
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
   }
-  resources :cart_items, only: [:create, :show, :update, :destroy]
-  delete 'cart_items' => 'cart_items#destroy_all'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :customers,only: [:show]
 
@@ -31,7 +34,7 @@ Rails.application.routes.draw do
     post 'orders/confirm' => 'orders#confirm' #注文確認
     get 'orders/complete' => 'orders/complete' #注文完了
   end
-
+  
   root 'items#top'
   get 'homes/about' => 'homes#about'
   
@@ -40,6 +43,7 @@ Rails.application.routes.draw do
   post 'edit' => 'customers#edit'
   get 'show' => 'customers#show'
   get 'delete' => 'customers#delete' #退会
+
 
 
 end
