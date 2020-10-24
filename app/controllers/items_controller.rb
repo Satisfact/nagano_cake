@@ -13,13 +13,13 @@ class ItemsController < ApplicationController
   if params[:genre_id].present?
    @sweet_item = Item.where(genre_id: params[:genre_id])
    @sweet_items = @sweet_item.where(is_active: true).page(params[:page]).per(8)
-   @quantity = Item.where(genre_id: params[:genre_id]).count
-   @genre = Genre.find(params[:genre_id])
+   #@genre = Genre.find(params[:genre_id])
    @genres = Genre.where(is_active: true)
+   @title = Genre.find(params[:genre_id]).name
   else
    @sweet_items = Item.where(is_active: true).page(params[:page]).per(8)
    @genres = Genre.where(is_active: true)
-   @quantity = Item.where(is_active: true).count
+   @title = "商品"
   end
  end
 
