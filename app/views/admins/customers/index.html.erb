@@ -18,13 +18,14 @@
         </tr>
     </thead>
     <tbody>
-        <% @customers.each do |customer| %>
-            <th><%= customer.id %></th>
-            <td><%= customer.first_name %><%= customer.last_name %></td>
-            <td><%= customer.email %></td>
-            <td><%= customer.is_deleted %></td>
-        <% end %> 
-        
+        <tr>
+            <% @customers.each do |customer| %>
+                <th><%= customer.id %></th>
+                <td><%= customer.first_name %><%= customer.last_name %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.is_deleted %></td>
+            <% end %> 
+        </tr>
     </tbody>
 </table>
 </div>
