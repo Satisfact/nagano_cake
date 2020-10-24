@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :items, except: [:delete]
+    resources :items, except: [:delete] 
   end
 
   #顧客側
@@ -16,32 +16,27 @@ Rails.application.routes.draw do
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
   }
-  resources :cart_items, only: [:create, :show, :update, :destroy]
-  delete 'cart_items' => 'cart_items#destroy_all'
+  #カートアイテム
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :customers,only: [:show]
 
-
-
+  #顧客情報（マイページ）
+  resources :customers,only: [:show, :edit]
+  #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-
+  
   #itemsの中にordersを入れる
   resources :items, only: [:top, :index, :show] do
+    #ジャンル
+    get :search, on: :collection
     resources :orders, only: [:new, :index, :create, :show]
     post 'orders/confirm' => 'orders#confirm' #注文確認
     get 'orders/complete' => 'orders/complete' #注文完了
   end
-
+  
   root 'items#top'
   get 'homes/about' => 'homes#about'
-  
-  #顧客のcustomers
-  get 'edit' => 'customers#edit' #住所変更
-  post 'edit' => 'customers#edit'
-  get 'show' => 'customers#show'
-  get 'delete' => 'customers#delete' #退会
-
-
 end
 
 

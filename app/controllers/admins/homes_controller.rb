@@ -1,8 +1,6 @@
 class Admins::HomesController < ApplicationController
+  before_action :authenticate_admin!
   def top
-    #OrderItemはモデル名で変更しないといけません！
-    #上記モデル追加後コメントアウト
-    #@item = OrderedItem
-    #@count = @item
+    #@quantity = Order.where(is_active: true).count
   end
 end
