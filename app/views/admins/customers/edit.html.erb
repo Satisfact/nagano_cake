@@ -3,7 +3,7 @@
 
   <h2><i class="fas fa-user-edit"></i>登録情報編集</h2><br>
 
-    <%= form_with model:@customer, url:edit_path, local:true do |f| %>
+    <%= form_with model:@customer, url:edit_admins_customer_path(@customer), local:true do |f| %>
     <div class="row user_edit">
 
       <div class="col-xs-2">
@@ -78,7 +78,7 @@
         <% end %>
       </div>
       <div class="col-xs-3">
-        <%=button_to "退会する",delete_path, method: :get, class: "btn btn-danger" %>
+        <!--%=button_to "退会する",delete_path, method: :get, class: "btn btn-danger" %>-->
       </div>
     </div>
 </div>
