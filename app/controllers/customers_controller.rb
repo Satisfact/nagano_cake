@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
-  #before_action :authenticate_customer!
+
+  #before_action :authenticate_costmer!
+
   def show
      @customer = current_customer
   end

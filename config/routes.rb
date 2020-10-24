@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   end
 
   #顧客側
-  devise_for :customers
+  devise_for :customers, controllers:{
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
   resources :cart_items, only: [:create, :show, :update, :destroy]
   delete 'cart_items' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  resources :customers,only: [:show]
 
 
 

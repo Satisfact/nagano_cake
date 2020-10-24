@@ -15,7 +15,7 @@
         <% @sweet_items.each do |item| %>
           <div class="col-md-3"><!--floatleft?-->
             <%= link_to item_path(item.id) do %>
-              <%= attachment_image_tag @item, :image, size: "200x200", fallback: "no_image.jpg" %>
+              <%= attachment_image_tag item, :image, size: "200x200", fallback: "no_image.jpg" %>
             <% end %>
             <p><%= item.name %></p>
             <p>¥<%= item.price %></p>
