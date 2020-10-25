@@ -18,17 +18,18 @@
         </tr>
     </thead>
     <tbody>
+        <% @customers.each do |customer| %>
         <tr>
-            <% @customers.each do |customer| %>
-                <th><%= customer.id %></th>
-                <td>
-                    <% link_to admins_customer_path(customer) do %>
-                        <%= customer.first_name %><%= customer.last_name %>
-                    <% end %>
-                </td>
-                <td><%= customer.email %></td>
-                <td><%= customer.is_deleted %></td>
-            <% end %> 
+        　　<th><%= customer.id %></th>
+            <td>
+                <% link_to admins_customer_path(customer) do %>
+                <%= customer.first_name %><%= customer.last_name %>
+                <% end %>
+            </td>
+            <td><%= customer.email %></td>
+            <td><%= customer.is_deleted %></td>
+        </tr>
+            <% end %>
         </tr>
     </tbody>
 </table>
