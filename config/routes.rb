@@ -31,18 +31,18 @@ Rails.application.routes.draw do
   #顧客退会
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   #顧客退会処理（ステータス変更）
-  patch 'customers/withdraw' => 'customers/withdraw'
+  patch 'customers/withdraw' => 'customers#withdraw'
   #顧客側
 
   #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 
   #itemsの中にordersを入れる
-  resources :items, only: [:top, :index, :show] do
-    resources :orders, only: [:new, :index, :create, :show]
-    post 'orders/confirm' => 'orders#confirm' #注文確認
-    get 'orders/complete' => 'orders/complete' #注文完了
-  end
+  resources :items, only: [:top, :index, :show] 
+
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/confirm' => 'orders#confirm' #注文確認
+  get 'orders/complete' => 'orders#complete' #注文完了
 
   root 'items#top'
   get 'homes/about' => 'homes#about'
