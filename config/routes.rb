@@ -12,18 +12,28 @@ Rails.application.routes.draw do
     resources :orders, except: [:new,:create,:edit]
   end
 
+  #カートアイテム
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #顧客情報（マイページ）
+  #resource使わない方がいい？
+  #resource :customers, only: [:show, :edit, :update]
+  get 'customers/mypage' => "customers#show"
+  #臨時
+  get 'customers/edit' => 'customers#edit'
+  patch 'customers' => 'customers#update'
+  #顧客退会
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  #顧客退会処理（ステータス変更）
+  patch 'customers/withdraw' => 'customers/withdraw'
   #顧客側
   devise_for :customers, controllers:{
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
   }
-  #カートアイテム
-  resources :cart_items, only: [:index, :create, :update, :destroy]
-  delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
- 
-  #顧客情報（マイページ）
-  resources :customers, only: [:show, :edit]
+
   #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 
