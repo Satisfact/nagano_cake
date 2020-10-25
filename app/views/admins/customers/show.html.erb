@@ -12,7 +12,7 @@
                     <tbody>
                         <tr>
                             <th>顧客ID</th>
-                            <th><%= @customer.id %> <%= @customer.is_deleted ? '友好会員':'退会済み' %></th> 
+                            <th><%= @customer.id %> <%= @customer.is_deleted ? '友好会員':'退会済み' %></th>
                         </tr>
                         <tr>
                             <th>氏名</th>
@@ -24,7 +24,7 @@
                         </tr>
                         <tr>
                             <th>郵便番号</th>
-                            <th><%= @customer.postal_code %></th>
+                            <th><%= @customer.postcode %></th>
                         </tr>
                         <tr>
                             <th>住所</th>
@@ -32,7 +32,7 @@
                         </tr>
                         <tr>
                             <th>電話番号</th>
-                            <th><%= @customer.telephone_number %></th>
+                            <th><%= @customer.tell %></th>
                         </tr>
                         <tr>
                             <th>メールアドレス</th>
@@ -42,8 +42,11 @@
                 </table>
                 <%= link_to "編集する", edit_admins_customer_path, class: "btn btn-primary" %>
                 <!--%= link_to "注文一覧を見る", _path, class: "btn btn-primary" %-->
+
+
             </div>
         </div>
     </container>
 </main>
+
 
