@@ -18,21 +18,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #顧客情報（マイページ）
-  devise_for :customers, controllers:{
-    sessions: 'customers/sessions',
-    registrations: 'customers/registrations'
-  }
   #resource使わない方がいい？
-  #resource :customers, only: [:show, :edit, :update]
-  get 'customers/mypage' => "customers#show"
-  #臨時
-  get 'customers/edit' => 'customers#edit'
-  patch 'customers' => 'customers#update'
+  resource :customers, only: [:show, :edit, :update]
   #顧客退会
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   #顧客退会処理（ステータス変更）
   patch 'customers/withdraw' => 'customers#withdraw'
-  #顧客側
+  #顧客側（editルートがかぶるため、下に）
+  devise_for :customers, controllers:{
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
 
   #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
