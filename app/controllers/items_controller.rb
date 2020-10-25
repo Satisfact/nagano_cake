@@ -3,8 +3,8 @@ class ItemsController < ApplicationController
  def top
   #アクティブtrueのジャンルを表示
   @genres = Genre.where(is_active: true)
-  #ダメならGenre.all(genre_id: params["genre"])
-  @sweet_items = Item.limit(4).offset(4)
+  #limit(個数).offset(どこから)
+  @sweet_items = Item.limit(4).offset(0)
  end
 
  def index

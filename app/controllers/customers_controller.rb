@@ -10,11 +10,13 @@ class CustomersController < ApplicationController
   end
 
   def update
-     @customer = current_customer
-     @customer.update(customer_params)
-     redirect_to
+    @customer = current_customer
+    if @customer.update(customer_params)
+     redirect_to customers_mypage_path
+    else
+     render "edit"
+    end
   end
-
 
 
 
@@ -26,8 +28,8 @@ class CustomersController < ApplicationController
   end
 
  private
-  def
+  def customer_params
+    #params.require(:customer).permit(:name, :introduction, :profile_image)
   end
 
-  end
 end

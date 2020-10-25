@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       flash[:alert] = "カートに商品がありません"
       redirect_to cart_item_path(cart_item)
     else
-      @order = Oreder.new
+      @order = Order.new
       @address = @customer.address
       @send_address = Address.new(customer_id: @customer.id)
     end
