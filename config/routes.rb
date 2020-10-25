@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  
   #顧客情報（マイページ）
-  resources :customers,only: [:show, :edit]
+  resources :customers, only: [:show, :edit]
   #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
 
