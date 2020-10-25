@@ -16,7 +16,7 @@ Customer.create!(
   first_name: '名前',
   last_kana: 'ミョウジ',
   first_kana: 'ナマエ',
-  postcode: '0000000',
+  postal_code: '0000000',
   address: '〇〇〇〇〇〇〇〇〇〇〇〇',
   telephone_number: '00000000000')
   
