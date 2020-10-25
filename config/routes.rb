@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #顧客情報（マイページ）
+  devise_for :customers, controllers:{
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
   #resource使わない方がいい？
   #resource :customers, only: [:show, :edit, :update]
   get 'customers/mypage' => "customers#show"
@@ -29,10 +33,6 @@ Rails.application.routes.draw do
   #顧客退会処理（ステータス変更）
   patch 'customers/withdraw' => 'customers/withdraw'
   #顧客側
-  devise_for :customers, controllers:{
-    sessions: 'customers/sessions',
-    registrations: 'customers/registrations'
-  }
 
   #配送先
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
