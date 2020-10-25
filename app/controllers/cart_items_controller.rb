@@ -2,7 +2,6 @@ class CartItemsController < ApplicationController
   before_action :find_cart_item, only:[:update, :destroy]
   
   def create
-
     #old item に current_customerのcart_itemsの中からitem_idがparams(item/showで作成したcart_item)のitem_idと同じものを探して入力
     @old_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     #old_itemが見つかった場合
