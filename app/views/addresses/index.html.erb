@@ -11,12 +11,14 @@
     </div>
     <div class="sukima row form-inline">
       <%= f.label :address, "住所", class:"col-sm-4 control-label" %>
-      <%= f.text_field :address %>
+      <%= f.text_field :address, :size => "50" %>
     </div>
     <div class="sukima row form-inline">
       <%= f.label :name, "宛名", class:"col-sm-4 control-label" %>
       <%= f.text_field :name %>
-      <%= f.submit '登録する', class: 'btn btn-success' %>
+      <div class="pull-right">
+        <%= f.submit '登録する', class: 'btn btn-success' %>
+      </div>
     </div>
     <% end %>
 
