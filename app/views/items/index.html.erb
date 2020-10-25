@@ -4,7 +4,7 @@
     <%= render 'items/genrebox', genres: @genres %>
 
     <div class="col-xs-9">
-      <h3>商品一覧<span>(全<%= @quantity %>件)</span></h3>
+      <h3><%= @title %>一覧<span>(全<%= @sweet_items.count %>件)</span></h3>
       <div class="row">
         <% @sweet_items.each do |item| %>
           <div class="col-md-3"><!--floatleft?-->

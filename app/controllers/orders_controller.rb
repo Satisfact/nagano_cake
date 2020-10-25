@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       @send_address = Address.new(customer_id: @customer.id)
     end
   end
-  
+
   def create
     @order = Order.new(order_params)
 		@customer = current_customer
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
       @ad.postcode = params[:address][:postcode]
       @ad.name = params[:address][:name]
       @ad.save #登録
-      
+
       @order.address = params[:address][:address]
       @order.postcode = params[:address][:postcode]
       @order.name =  params[:address][:name]
@@ -49,10 +49,10 @@ class OrdersController < ApplicationController
   end
   #注文確認
   def confirm
-    @cart_items = CartItem.where(customer_id: current_customer.id) 
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @item = Item.find(params[:item_id])
     @order = @item.order.new(order_params)
-      
+
   end
   #thak you!
   def complete
@@ -60,14 +60,14 @@ class OrdersController < ApplicationController
 
  #注文履歴
   def index
-    @user = User.find(params[:id])
+    @customer = Customer.find(params[:id])
     @orders = Order.all
   end
 
   def show
     @order = Order.find(params[:id])
   end
-  
+
   private
   def order_params
     params.require(:order).permit(:customer_id,:postcode,:address,:name,:send_cost,:amount,:item_id)
