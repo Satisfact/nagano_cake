@@ -1,21 +1,25 @@
 <div class="container">
   <div class="row">
-    <h1>配送登録/一覧</h1>
+    <h1 class="col-md-3 col-md-offset-1"><span class="label label-default">配送登録/一覧</span></h1>
+  </div>
+  <div class="row">
     <%= form_with model:@address, url:addresses_path, local:true do |f| %>
     <%= render 'layouts/errors', model: @address %>
-    <p>
-      <%= f.label :postcode, "郵便番号（ハイフンなし）" %>
+    <div class="sukima row form-inline">
+      <%= f.label :postcode, "郵便番号（ハイフンなし）", class:"col-sm-4 control-label" %>
       <%= f.text_field :postcode %>
-    </p>
-    <p>
-      <%= f.label :address, "住所" %>
-      <%= f.text_field :address %>
-    </p>
-    <p>
-      <%= f.label :name, "宛名" %>
+    </div>
+    <div class="sukima row form-inline">
+      <%= f.label :address, "住所", class:"col-sm-4 control-label" %>
+      <%= f.text_field :address, :size => "50" %>
+    </div>
+    <div class="sukima row form-inline">
+      <%= f.label :name, "宛名", class:"col-sm-4 control-label" %>
       <%= f.text_field :name %>
-      <%= f.submit '登録する', class: 'btn btn-success' %>
-    </p>
+      <div class="pull-right">
+        <%= f.submit '登録する', class: 'btn btn-success' %>
+      </div>
+    </div>
     <% end %>
 
     <table class="table">
