@@ -2,7 +2,8 @@ class CartItemsController < ApplicationController
   before_action :find_cart_item, only:[:update, :destroy]
   
   def create
-    #old item は current_customerのcart_itemsの中からitem_idがparams(item/showで作成したcart_item)のitem_idと同じものを探す
+
+    #old item に current_customerのcart_itemsの中からitem_idがparams(item/showで作成したcart_item)のitem_idと同じものを探して入力
     @old_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     #old_itemが見つかった場合
     if @old_item.present?
@@ -28,7 +29,7 @@ class CartItemsController < ApplicationController
   
   def destroy_all
     cart_items = current_customer.cart_items
-    cart_items.destroy
+    cart_items.destroy_all
     redirect_to items_path
   end
   

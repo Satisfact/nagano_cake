@@ -92,7 +92,7 @@
       <div class="col-xs-1">
       </div>
       <div class="col-xs-2">
-        <%= f.radio_button :is_active, true, checked: true %> 有効 <%= f.radio_button :is_active, false %> 退会済み
+        <%= f.radio_button :is_deleted, false, checked: false %> 有効 <%= f.radio_button :is_deleted, true %> 退会済み
       </div>
     </div>
   
