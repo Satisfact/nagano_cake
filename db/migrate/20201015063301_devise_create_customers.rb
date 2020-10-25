@@ -39,7 +39,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :postal_code, null: false #郵便番号
       t.string :address, null: false #住所
       t.string :telephone_number, null: false #電話番号
-      t.boolean :is_deleted, default: false, null: false # 会員ステータス
+      t.boolean :is_deleted, default: true, null: false # 会員ステータス
       t.timestamps null: false
     end
 
