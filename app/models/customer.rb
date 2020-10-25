@@ -9,4 +9,14 @@ class Customer < ApplicationRecord
   #注文履歴との紐付け
   has_many :orders, dependent: :destroy
   has_many :addresses
+  
+  #is_deletedがfalseの場合はlog inすることができる
+  def active_for_authentication?
+    super && (self.is_deleted === false)
+  end
+  
+  #is_deletedがtrueの場合のエラーメッセージ(<% alert %>に表示)
+  def inactive_message
+    "退会済みです"
+  end
 end
