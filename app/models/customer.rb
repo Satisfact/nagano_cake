@@ -12,7 +12,7 @@ class Customer < ApplicationRecord
   
   #is_deletedがfalseの場合はlog inすることができる
   def active_for_authentication?
-    super && (self.is_deleted === false)
+    super && (self.is_deleted === true)
   end
   
   #is_deletedがtrueの場合のエラーメッセージ(<% alert %>に表示)
