@@ -1,98 +1,42 @@
-<style>
-  h2{
-    margin-bottom: 50px;
-  }
-
-  table{
-  width: 100%;
-  border-collapse:separate;
-  border-spacing: 0;
-  }
-
-  table th:first-child{
-    border-radius: 5px 0 0 0;
-  }
-
-  table th:last-child{
-    border-radius: 0 5px 0 0;
-    border-right: 1px solid #3c6690;
-  }
-
-  table th{
-    text-align: center;
-    color:white;
-    background: linear-gradient(#829ebc,#225588);
-    border-left: 1px solid #3c6690;
-    border-top: 1px solid #3c6690;
-    border-bottom: 1px solid #3c6690;
-    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
-    width: 25%;
-    padding: 10px 0;
-  }
-
-  table td{
-    text-align: center;
-    border-left: 1px solid #a8b7c5;
-    border-bottom: 1px solid #a8b7c5;
-    border-top:none;
-    box-shadow: 0px -3px 5px 1px #eee inset;
-    width: 25%;
-    padding: 10px 0;
-  }
-
-  table td:last-child{
-    border-right: 1px solid #a8b7c5;
-  }
-
-  table tr:last-child td:first-child {
-    border-radius: 0 0 0 5px;
-  }
-
-  table tr:last-child td:last-child {
-    border-radius: 0 0 5px 0;
-  }
-  .btn{
-    margin-top:30px;
-  }
-</style>
-
 <div class="container">
   <div class="row">
     <h2 class="col-md-3 col-md-offset-1"><span class="label label-default">　注文情報確認　</span></h2>
   </div>
 
   <div class="row">
+          <% sum = 0 %>
     <div class="col-md-7">
-      <table>
-        <tr>
+      <table class="table table-bordered">
+        <tr class="active">
           <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
         </tr>
-        <tr>
           <% @cart_items.each do |cart_item| %>
+        <tr>
             <td><%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg" %><%= cart_item.item.name %></td>
-            <td><%= (cart_item.item.price * 1.1).round.to_s(:delimited) %></td>
+            <td><%= number_with_delimiter((cart_item.item.price * 1.1).round) %></td>
             <td><%= cart_item.amount %></td>
-            <td><%= (cart_item.item.price * 1.1).round.to_s(:delimited) * cart_item.amount %></td>
-          <% end %>
+            <td><%= number_with_delimiter(money = (cart_item.item.price * cart_item.amount * 1.1).round) %></td>
+          <% sum = sum + money %>
         </tr>
+          <% end %>
       </table>
     </div>
     <div class="col-md-4">
-      <table>
-        <tr>
+      <table class="table table-bordered">
+        <tr class="active">
           <th>送料</th>
-          <td>¥800</td>
+          <td>￥<%= @order.send_cost %></td>
         </tr>
         <tr>
           <th>商品合計</th>
-          <td>¥1111</td>
+          <td>￥<%= number_with_delimiter(sum) %></td>
         </tr>
         <tr>
           <th>請求合計</th>
-          <td>¥1111</td>
+          <td>￥<%= number_with_delimiter((sum + @order.send_cost)) %> </td>
         </tr>
       </table>
     </div>
@@ -103,7 +47,7 @@
       <h3>支払方法</h3>
     </div>
     <div class="col-md-9">
-      <p>クレジットカード</p>
+      <p><%= @order.pay %></p>
     </div>
   </div>
 
@@ -112,13 +56,13 @@
       <h3>お届け先</h3>
     </div>
     <div class="col-md-9">
-      <p>1500041 東京都渋谷区神南1丁目19-11 パークウェースクエア2 4階<br>山田花子</p>
+      <p><%= @order.postcode %><%= @order.address %><br><%= @order.name %></p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-3 col-md-offset-4">
-      <button type="button" class="btn btn-success btn-lg btn-block">購入を確定する</button>
+      <%= link_to "購入を確定する", order_complete_path, class:"btn btn-success btn-lg btn-block" %>
     </div>
   </div>
 </div>

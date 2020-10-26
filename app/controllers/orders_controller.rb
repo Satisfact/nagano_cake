@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
   def new
     @customer = current_customer
     if @customer.cart_items.blank?
-      flash[:alert] = "カートに商品がありません"
-      redirect_to cart_item_path(cart_item)
+      flash[:notice] = "カートに商品がありません"
+      redirect_to cart_items_path
     else
       @order = Order.new
       @address = current_customer.address
@@ -14,59 +14,80 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create
-    @order = Order.new(order_params)
-		@customer = current_customer
-		@ads = @customer.addresses
-		#支払い条件
-    @order.pay = params[:order][:pay]
-    #配送先
-    if params[:order][:order_status] == "0" #ご自身の住所
-      @order.postcode = current_customer.postcode
-      @order.address = current_customer.address
-      @order.name = current_customer.name
-    elsif params[:order][:order_status] == "1" #登録済住所から選択
-		  @ad = @ads.find(params[:address][:id])
-      @order.address = @ad.address
-      @order.postcode = @ad.postcode
-      @order.name = @ad.name
-    elsif params[:order][:order_status] == "2" #新しいお届け先
-      @ad = Address.new
-      @ad.customer_id = @customer.id
-      @ad.address = params[:address][:address]
-      @ad.postcode = params[:address][:postcode]
-      @ad.name = params[:address][:name]
-      @ad.save #登録
-      @order.address = params[:address][:address]
-      @order.postcode = params[:address][:postcode]
-      @order.name =  params[:address][:name]
-    end
-    #注文は登録されましたか?
-    if @order.save
-      redirect_to item_order_path
-    end
-  end
   #注文確認
   def confirm
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    #配送先
+    if params[:order][:send_address].to_i == 0 #ご自身の住所
+      @order.postcode = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:send_address].to_i == 1 #登録済住所から選択
+      @order.postcode =  Address.find(params[:order][:sending_address].to_i).postcode
+      @order.address = Address.find(params[:order][:sending_address].to_i).address
+      @order.name = Address.find(params[:order][:sending_address].to_i).name
+    elsif params[:order][:send_address].to_i == 2 #新しいお届け先
+      @address = Address.new()
+      @address.address = params[:order][:address]
+      @address.customer_id = current_customer.id
+      @address.postcode = params[:order][:postcode]
+      @address.name = params[:order][:name]
+      if @address.save #登録
+        @order.address = params[:order][:address]
+        @order.postcode = params[:order][:postcode]
+        @order.name =  params[:order][:name]
+      else
+        render "new"
+      end
+    end
   end
   #thak you!
   def complete
   end
 
+  def create
+    @order = Order.new(order_params)
+		@order.customer_id = current_customer.id
+		@order.save
+		#注文商品about_order(履歴などに使用)
+		current_customer.cart_items.each do |cart_item|
+		  @about_oder = Oder.new
+		  #注文明細id
+		  @about_oder.item_id = cart_item.item.id
+		  #個数
+		  @about_oder.number_of_items = cart_item.number_of_items
+		  #税込
+		  @about_oder.items_tax_included_price = (cart_item.price * 1.1).floor
+		  @about_oder.order_id = @order.id
+		  @about_oder.save
+		end
+		#カートを空っぽに
+    cart_items = current_customer.cart_items
+    cart_items.destroy_all
+  end
+
+
  #注文履歴
   def index
-    @customer = Customer.find(params[:id])
-    @orders = Order.all
+    @customer = current_customer
+    @orders = @customer.orders
   end
 
   def show
     @order = Order.find(params[:id])
+    #他顧客のアクセス阻止(念のため)
+    unless current_customer.nil? || current_customer.id == @order.user_id
+      flash[:notice] = "アクセスできません"
+      redirect_to orders_path(id: current_customer.id)
+    end
   end
 
   private
   def order_params
-    params.require(:order).permit(:customer_id,:postcode,:address,:name,:send_cost,:amount,:item_id)
+    params.require(:order).permit(:customer_id, :postcode, :address, :name, :send_cost, :amount, :item_id, :pay ,:order_status)
+  end
+  def address_params
+    params.permit(:address, :postcode, :name)
   end
 end
