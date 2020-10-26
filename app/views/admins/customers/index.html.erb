@@ -23,7 +23,7 @@
         　　<th><%= customer.id %></th>
             <td>
                 <%= link_to admins_customer_path(customer) do %>
-                <%= customer.first_name %><%= customer.last_name %>
+                    <p><%= customer.last_name %><%= customer.first_name %></p>
                 <% end %>
             </td>
             <td><%= customer.email %></td>
@@ -33,8 +33,7 @@
             <td>退会済み</td>
             <% end %>
         </tr>
-            <% end %>
-        </tr>
+        <% end %>
     </tbody>
 </table>
 </div>
