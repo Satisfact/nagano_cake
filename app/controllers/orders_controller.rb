@@ -49,8 +49,7 @@ class OrdersController < ApplicationController
   #注文確認
   def confirm
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    @item = Item.find(params[:item_id])
-    @order = @item.order.new(order_params)
+    @order = Order.new(order_params)
   end
   #thak you!
   def complete
