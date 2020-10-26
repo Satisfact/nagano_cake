@@ -39,9 +39,9 @@ Rails.application.routes.draw do
   #itemsの中にordersを入れる
   resources :items, only: [:top, :index, :show] 
 
-  resources :orders, only: [:new, :index, :create, :show]
-  post 'orders/confirm' => 'orders#confirm' #注文確認
-  get 'orders/complete' => 'orders#complete' #注文完了
+  resources :orders, only: [:index,:new, :create, :show]
+  post 'order/confirm' => 'orders#confirm' #注文確認
+  get 'order/complete' => 'orders#complete' #注文完了
 
   root 'items#top'
   get 'homes/about' => 'homes#about'
