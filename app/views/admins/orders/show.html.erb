@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
-    <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">　　注文履歴詳細　　</span></h2>
+    <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">注文履歴詳細</span></h2>
   </div>
   <div class="row">
+    <div>
     <table>
       <tr>
         <th>購入者</th>
-        <td>@order.名前</td>
+        <td><!--%= @order.customer.name %--></td>
       </tr>
       <tr>
         <th>配送先</th>
-        <td>@order.住所</td>
+        <td>@order.住所</td><!-- モデルごっちゃんのを参考にする-->
       </tr>
       <tr>
         <th>支払い方法</th>
@@ -18,7 +19,44 @@
       </tr>
       <tr>
         <th>注文ステータス</th>
-        <td>@order.入金</td>
+        <!--%= form_with model:@order, local:true do |f| %>-->
+          <td>@order.入金</td>
+          <!--% f.submit '更新'--%>
+        <!--% end %-->
       </tr>
     </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--% @oreder.items.each do |order_item| %> -->
+        <tr>
+          <td>@order_item.name</td>
+          <td>@order_item.price * 1.1</td>
+          <td>@order_item.amount</td>
+          <td>@order_item.bill</td>
+          <!--%= form_with model:@order, local:true do |f| %>-->
+            <td>@order_item.order_status</td>
+            <!--% f.submit '更新'--%>
+          <!--% end %-->
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="col-xs-offset-1 col-xs-2">
+      <p><strong>商品合計</strong></p><p>合計</p>
+      <p><strong>送料</strong></p><p>送料</p>
+      <p><strong>請求金額合計</strong></p><p><strong>送料＋合計金額</strong></p>
+    </div>
   </div>

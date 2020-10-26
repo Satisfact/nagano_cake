@@ -14,12 +14,16 @@
           </tr>
         </thead>
         <tbody>
-          <!--% @orders.each do |order| %>-->
+          <!--% @order.each do |order| %>-->
           <tr>
-            <td>%= link_to "日付", admins_order_path %> </td>
-            <td>名前</td>
-            <td>１</td>
-            <td>入金待ち</td>
+            <td>日時
+              <!--%= link_to admins_order_path do -->
+                <!--%= @order.datetime %-->
+              <!-- % end %-->
+            </td>
+            <td>名前<!--%= @order.customer.name %--></td>
+            <td>数<!--%= @order.order_details.amount %--></td>
+            <td>ステータス<!--%= @order.status%--></td>
           </tr>
         </tbody>
       </table>
