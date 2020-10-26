@@ -8,7 +8,7 @@
   <div class="row-no-gutters">
     <h3 class="col-sm-2"><strong>登録情報</strong></h3>
     <div class="col-sm-2 index">
-      <%= link_to '　編集する　',customers_edit_path, class: "btn btn-primary" %>
+      <%= link_to '　編集する　',edit_customers_path, class: "btn btn-primary" %>
     </div>
     <div class="col-sm-2 index">
         <%= link_to '　パスワードを変更する　', new_customer_password_path, class: "btn btn-primary" %>
@@ -52,8 +52,8 @@
   <div class="index row">
     <h3 class="col-sm-2"><strong>注文履歴</strong></h3>
     <div class="col-sm-10 btn btn-primary">
-      あとで直します
-      <!--%= link_to '　一覧を見る　',item_orders_path(@customer), class: "btn btn-primary" %>-->
+      <!--order/indexへのパスに要変更-->
+      <%= link_to '　一覧を見る　',new_order_path, class: "btn btn-primary" %>
     </div>
   </div>
 

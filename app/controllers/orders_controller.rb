@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
       flash[:alert] = "カートに商品がありません"
       redirect_to cart_item_path(cart_item)
     else
-      @order = Oreder.new
-      @address = @customer.address
+      @order = Order.new
+      @address = current_customer.address
       @send_address = Address.new(customer_id: @customer.id)
     end
   end
@@ -37,7 +37,6 @@ class OrdersController < ApplicationController
       @ad.postcode = params[:address][:postcode]
       @ad.name = params[:address][:name]
       @ad.save #登録
-
       @order.address = params[:address][:address]
       @order.postcode = params[:address][:postcode]
       @order.name =  params[:address][:name]
@@ -52,7 +51,6 @@ class OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @item = Item.find(params[:item_id])
     @order = @item.order.new(order_params)
-
   end
   #thak you!
   def complete

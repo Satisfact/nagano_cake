@@ -20,11 +20,15 @@
     <tbody>
       <% @items.each do |item| %>
       <tr>
-        <td><%=  item.id %></td>
+        <td><%= item.id %></td>
         <td><%= link_to item.name, admins_item_path(item.id) %></td>
         <td><%= item.price.to_s(:delimited) %></td>
         <td><%= item.genre.name %></td>
-        <td><%= item.is_active %></td>
+        <% if item.is_active == true %>
+        <td>有効</td>
+        <% else %>
+        <td>無効</td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

@@ -10,24 +10,21 @@ class CustomersController < ApplicationController
   end
 
   def update
-     @customer = current_customer
-     @customer.update(customer_params)
-     redirect_to
+    @customer = current_customer
+    if @customer.update(customer_params)
+     redirect_to customers_path
+    else
+     render "edit"
+    end
   end
-
-
-
-
-  def destroy
-
-
-    #ログアウトさせる
-
+  #退会機能
+  def unsubscribe
+    @customer = current_customer
   end
 
  private
-  def
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_kana, :first_kana, :postal_code, :address, :telephone_number)
   end
 
-  end
 end

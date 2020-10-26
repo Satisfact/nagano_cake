@@ -16,22 +16,20 @@
       </label>
     </div>
   </div>
-  
+
   <div class="row">
     <h4 class="col-md-10">お届け先</h4>
     <div class="radio col-md-8  col-xs-offset-1">
       <label>
         <%= f.radio_button :address, 0, checked: "checked" %>ご自身の住所
       </label>
-      <p><%= @customer.postcode %> <%= @customer.address %><br><%= @customer.name %></p>
+      <p><%= current_customer.postal_code %> <%= current_customer.address %><br><%= current_customer.last_name %>  <%= current_customer.first_name %></p>
     </div>
     <div class="radio col-md-8 col-xs-offset-1">
       <label>
         <%= f.radio_button :address, 1 %>登録済住所から選択
       </label>
-      <%= f.collection_select(:address, address.all, :id, :address_all) %>
-      <!--記載下の方がいい？-->
-      <!--f.collection_select :order_address , current_end_user.addresses, :id, :address , :include_blank => "選択してください"-->
+      <!--%= f.collection_select(:address, current_customer.address, :id, :address, :include_blank => "選択してください") %>-->
     </div>
     <div class="radio col-md-8 col-xs-offset-1">
       <label>
@@ -59,7 +57,7 @@
       </form>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-3 col-md-offset-4">
       <%= f.submit "確認画面へ進む", class:"btn btn-primary btn-lg btn-block" %>
