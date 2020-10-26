@@ -23,7 +23,7 @@
                     <% @cart_items.each do |cart_item| %>
                         <tr>
                             <th><%= attachment_image_tag cart_item.item, :image, size: "40x40", fallback: "no_image.jpg" %> <%= cart_item.item.name %></th>
-                            <td><%= (cart_item.item.price * 1.1).round %></td>
+                            <td><%= (cart_item.item.price * 1.1).round.to_s(:delimited) %></td>
                             <%= form_with model: cart_item, local:true do |f| %>
                                 <td><%= f.number_field :amount, min:1, max: 10 %> <%= f.submit "変更", class: "btn btn-primary btn-sm"%></td>
                             <% end %>
@@ -42,7 +42,7 @@
                     <tbody>
                         <tr>
                             <th>合計金額</th>
-                            <th><%= sum %></th>
+                            <th><%= sum.to_s(:delimited) %></th>
                         </tr>
                     </tbody>
                 </table>

@@ -19,11 +19,14 @@ Rails.application.routes.draw do
 
   #顧客情報（マイページ）
   #resource使わない方がいい？
-  resource :customers, only: [:show, :edit, :update]
-  #顧客退会
-  get 'customers/unsubscribe' => 'customers#unsubscribe'
-  #顧客退会処理（ステータス変更）
-  patch 'customers/withdraw' => 'customers#withdraw'
+  resource :customers, only: [:show, :edit, :update] do
+    member do
+      #顧客退会
+      get 'unsubscribe'
+      #顧客退会処理（ステータス変更）
+      patch 'withdraw'
+    end
+  end
   #顧客側（editルートがかぶるため、下に）
   devise_for :customers, controllers:{
     sessions: 'customers/sessions',
