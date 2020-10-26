@@ -18,13 +18,23 @@ class CustomersController < ApplicationController
     end
   end
   #退会機能
+  #ユーザー情報を見つける
   def unsubscribe
     @customer = current_customer
+  end
+  
+  def withdraw
+    @customer = current_customer
+    #登録情報をfalseに変更
+    @customer.update(is_deleted: false)
+    #sessionIDのリセットを行う
+    reset_session
+    redirect_to root_path
   end
 
  private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_kana, :first_kana, :postal_code, :address, :telephone_number)
+    params.require(:customer).permit(:last_name, :first_name, :last_kana, :first_kana, :postal_code, :address, :telephone_number, :is_deleted)
   end
 
 end
