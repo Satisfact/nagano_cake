@@ -22,7 +22,7 @@
         <tr>
         　　<th><%= customer.id %></th>
             <td>
-                <%= link_to admins_customer_path(customer), class: 'develop' do %>
+                <%= link_to admins_customer_path(customer) do %>
                     <p><%= customer.last_name %><%= customer.first_name %></p>
                 <% end %>
             </td>
