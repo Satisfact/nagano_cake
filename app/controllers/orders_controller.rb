@@ -47,9 +47,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-		@order.customer_id = current_customer.id
-		@order.save
+    @orders = Order.new(order_params)
+		@orders.customer_id = current_customer.id
+		@orders.save
 		#注文商品about_order(履歴などに使用)
 		current_customer.cart_items.each do |cart_item|
 		  @about_oder = Oder.new

@@ -1,71 +1,13 @@
-<style>
-  h2{
-    margin-bottom:50px;
-  }
-  
-  table{
-  width: 100%;
-  border-collapse:separate;
-  border-spacing: 0;
-  }
-  
-  table th:first-child{
-    border-radius: 5px 0 0 0;
-  }
-  
-  table th:last-child{
-    border-radius: 0 5px 0 0;
-    border-right: 1px solid #3c6690;
-  }
-  
-  table th{
-    text-align: center;
-    color:white;
-    background: linear-gradient(#829ebc,#225588);
-    border-left: 1px solid #3c6690;
-    border-top: 1px solid #3c6690;
-    border-bottom: 1px solid #3c6690;
-    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
-    width: auto;
-    padding: 10px 0;
-  }
-  
-  table td{
-    text-align: center;
-    border-left: 1px solid #a8b7c5;
-    border-bottom: 1px solid #a8b7c5;
-    border-top:none;
-    box-shadow: 0px -3px 5px 1px #eee inset;
-    width: auto;
-    padding: 10px 0;
-  }
-  
-  table td:last-child{
-    border-right: 1px solid #a8b7c5;
-  }
-  
-  table tr:last-child td:first-child {
-    border-radius: 0 0 0 5px;
-  }
-  
-  table tr:last-child td:last-child {
-    border-radius: 0 0 5px 0;
-  }
-  
-  .under{
-    margin-top: 50px;
-  }
-</style>
 <div class="container">
   <div class="row">
-    <h2 class="col-md-3 col-md-offset-1"><span class="label label-default">　　注文履歴一覧　　</span></h2>
+    <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">　　注文履歴一覧　　</span></h2>
   </div>
   <div class="row  row-no-gutters">
     <h4 class="col-md-3">注文情報</h4>
     <h4 class="col-md-3  col-md-offset-4">請求情報</h4>
     <div class="col-md-7">
-      <table>
-        <tr>
+      <table class="table table-bordered">
+        <tr class="active">
           <th>注文日</th>
           <td>dd/yy/mm</td>
         </tr>
@@ -84,8 +26,8 @@
       </table>
     </div>
     <div class="col-md-5">
-      <table>
-        <tr>
+      <table class="table table-bordered">
+        <tr class="active">
           <th>商品合計</th>
           <td>¥111</td>
         </tr>
@@ -104,8 +46,8 @@
   <div class="row">
     <h4 class="under">注文内容</h4>
     <div class="col-md-7">
-      <table>
-        <tr>
+      <table class="table table-bordered">
+        <tr class="active">
           <th>商品</th>
           <th>単価(税込)</th>
           <th>個数</th>
