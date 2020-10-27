@@ -14,19 +14,21 @@
           </tr>
         </thead>
         <tbody>
-          <!--% @order.each do |order| %>-->
+          <% @orders.each do |order| %>
           <tr>
-            <td>日時
-              <!--%= link_to admins_order_path do -->
-                <!--%= @order.datetime %-->
-              <!-- % end %-->
+            <td>
+              <%= link_to admins_order_path(order) do %>
+                <%= order.created_at %>
+              <% end %>
             </td>
-            <td>名前<!--%= @order.customer.name %--></td>
-            <td>数<!--%= @order.order_details.amount %--></td>
-            <td>ステータス<!--%= @order.status%--></td>
+            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+            <td><%= order.about_orders.all.sum(:amount) %></td>
+            <td><%= order.order_status %></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
+      <%= paginate @orders %>
     </div>
   </div>
 </div>
