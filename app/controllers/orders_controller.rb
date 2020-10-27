@@ -18,6 +18,8 @@ class OrdersController < ApplicationController
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    
+    # orderの画面で請求額を出すための計算
     #配列.sum(:カラム名)
     @order.bill = 0
     current_customer.cart_items.each do |cart_item|
@@ -73,7 +75,6 @@ class OrdersController < ApplicationController
     cart_items = current_customer.cart_items
     cart_items.destroy_all
   end
-
 
  #注文履歴
   def index
