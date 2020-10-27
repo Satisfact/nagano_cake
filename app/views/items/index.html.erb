@@ -15,8 +15,8 @@
             <p>¥<%= item.price.to_s(:delimited) %></p>
           </div>
         <% end %>
+        <%= paginate @sweet_items %>
       </div>
-      <!--ページネーションつける-->
     </div>
   </div>
 </div>
