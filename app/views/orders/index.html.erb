@@ -16,10 +16,14 @@
         <% @orders.each do |order| %>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= order.address %></td>
-        <td><%= order.item %></td>
-        <td>¥<%= order.price %></td>
+        <td>
+          <% order.about_orders.each do |about_order| %>
+            <%= about_order.item.name %>
+          <% end %>
+        </td>
+        <td>¥<%= order.bill %></td>
         <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", item_order_path(order), class:"btn btn-primary btn-sm" %></td>
+        <td><%= link_to "表示する", order_path(order), class:"btn btn-primary btn-sm" %></td>
         <% end %>
       </tr>
     </table>
