@@ -25,9 +25,9 @@
         <td><%= item.price.to_s(:delimited) %></td>
         <td><%= item.genre.name %></td>
         <% if item.is_active == true %>
-        <td>有効</td>
+        <td>販売中</td>
         <% else %>
-        <td>無効</td>
+        <td>販売停止中</td>
         <% end %>
       </tr>
       <% end %>
