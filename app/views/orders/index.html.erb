@@ -13,10 +13,12 @@
         <th>注文詳細</th>
       </tr>
       <tr>
+        <!--注文を呼び出している-->
         <% @orders.each do |order| %>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= order.address %></td>
         <td>
+          <!--注文明細をeachで呼び出している-->
           <% order.about_orders.each do |about_order| %>
             <%= about_order.item.name %>
           <% end %>
