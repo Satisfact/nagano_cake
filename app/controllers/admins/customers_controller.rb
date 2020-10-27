@@ -14,7 +14,7 @@ class Admins::CustomersController < ApplicationController
   
   def update
     @customer.update(customer_params)
-    redirect_to admins_customer_path(@customer.id)
+    redirect_to admins_customer_path(@customer.id), notice: "顧客情報編集しました"
   end
   
   private
