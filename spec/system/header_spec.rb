@@ -7,9 +7,6 @@ describe 'ヘッダーのテスト' do
     end
     context 'ヘッダーの表示を確認' do
       subject { page }
-      it 'タイトル、Homeリンクが表示される' do
-        is_expected.to have_content 'ながのcake'
-      end
       it 'Aboutリンクが表示される' do
         about_link = find_all('a')[0].native.inner_text
         expect(about_link).to match(/about/i)

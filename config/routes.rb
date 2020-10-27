@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   #カートアイテム
-  resources :cart_items, only: [:index, :create, :update, :destroy]
+  resources :cart_items, only: [:index, :create, :update, :destroy] 
   delete '/cart_items' => 'cart_items#destroy_all', as: :cart_delete
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
