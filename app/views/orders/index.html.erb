@@ -64,16 +64,16 @@
         <th>注文商品</th>
         <th>支払い金額</th>
         <th>ステータス</th>
-        <th>注文詳細</th>
+        <th>注文詳細</th> 
       </tr>
       <tr>
-        <%= @orders.each do |order| %>
-        <td><%= oder.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= oder.address %></td>
-        <td><%= oder.item %></td>
-        <td>¥<%= oder.price %></td>
-        <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", item_order_path(order), class:"btn btn-primary btn-sm" %></td>
+        <% @orders.each do |order| %>
+          <td>d<%= order.created_at.strftime('%Y/%m/%d') %></td>
+          <td>e<%= order.address %></td>
+          <td>g<%= order.item %></td>
+          <td>¥<%= order.price %></td>
+          <td><%= order.order_status %></td>
+          <td><%= link_to "表示する", item_order_path(order), class:"btn btn-primary btn-sm" %></td>
         <% end %>
       </tr>
     </table>
