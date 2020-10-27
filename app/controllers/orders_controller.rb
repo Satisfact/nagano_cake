@@ -18,6 +18,8 @@ class OrdersController < ApplicationController
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    
+    # orderの画面で請求額を出すための計算
     #配列.sum(:カラム名)
     @order.bill = 0
     current_customer.cart_items.each do |cart_item|
@@ -74,7 +76,6 @@ class OrdersController < ApplicationController
     cart_items.destroy_all
   end
 
-
  #注文履歴
   def index
     @customer = current_customer
@@ -83,6 +84,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @about_order = @order.about_orders
     #他顧客のアクセス阻止(念のため)
     unless current_customer.nil? || current_customer.id == @order.customer_id
       flash[:notice] = "アクセスできません"

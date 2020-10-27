@@ -4,18 +4,18 @@
   </div>
   <div class="row">
     <div>
-    <table>
+    <table class="index">
       <tr>
         <th>購入者</th>
         <td><!--%= @order.customer.name %--></td>
       </tr>
       <tr>
         <th>配送先</th>
-        <td>@order.住所</td><!-- モデルごっちゃんのを参考にする-->
+        <td>@order.address</td><!-- モデルごっちゃんのを参考にする-->
       </tr>
       <tr>
         <th>支払い方法</th>
-        <td>@order.銀行</td>
+        <td>@order.pay</td>
       </tr>
       <tr>
         <th>注文ステータス</th>
@@ -29,9 +29,9 @@
   </div>
   <div class="row">
     <div class="col-xs-9">
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
-        <tr>
+        <tr class="active">
           <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
