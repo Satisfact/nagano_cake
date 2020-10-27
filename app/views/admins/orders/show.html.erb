@@ -4,34 +4,37 @@
   </div>
   <div class="row">
     <div>
-    <table class="index">
+    <table>
       <tr>
         <th>購入者</th>
-        <td><!--%= @order.customer.name %--></td>
+        <td>
+          <%= @order.customer.last_name %>
+          <%= @order.customer.first_name %>
+        </td>
       </tr>
       <tr>
         <th>配送先</th>
-        <td>@order.address</td><!-- モデルごっちゃんのを参考にする-->
+        <td><%= @order.postcode %><%= @order.address %><br><%= @order.name %></td>
       </tr>
       <tr>
         <th>支払い方法</th>
-        <td>@order.pay</td>
+        <td><%= @order.pay %></td>
       </tr>
+      <%= form_with model:@order, local:true do |f| %>
       <tr>
         <th>注文ステータス</th>
-        <!--%= form_with model:@order, local:true do |f| %>-->
-          <td>@order.入金</td>
-          <!--% f.submit '更新'--%>
-        <!--% end %-->
+          <td><%= @order.order_status %></td>
+          <%= f.submit '更新' %>
       </tr>
+      <% end %>
     </table>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-9">
-    <table class="table table-bordered">
+    <table class="table">
       <thead>
-        <tr class="active">
+        <tr>
           <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
@@ -40,23 +43,25 @@
         </tr>
       </thead>
       <tbody>
-        <!--% @oreder.items.each do |order_item| %> -->
+        <% @order.about_orders.each do |about_order| %>
         <tr>
-          <td>@order_item.name</td>
-          <td>@order_item.price * 1.1</td>
-          <td>@order_item.amount</td>
-          <td>@order_item.bill</td>
-          <!--%= form_with model:@order, local:true do |f| %>-->
-            <td>@order_item.order_status</td>
-            <!--% f.submit '更新'--%>
-          <!--% end %-->
+          <td><%= about_order.item.name %></td>
+          <td><%= about_order.price %></td>
+          <td><%= about_order.amount %></td>
+          <td><%= @order.bill %></td>
+          <td>
+            <%= form_with model:@order, local:true do |f| %>
+            <%= about_order.making_status %><% f.submit '更新' %>
+            <% end %>
+          </td>
         </tr>
+        <% end %>
       </tbody>
     </table>
     </div>
     <div class="col-xs-offset-1 col-xs-2">
-      <p><strong>商品合計</strong></p><p>合計</p>
-      <p><strong>送料</strong></p><p>送料</p>
-      <p><strong>請求金額合計</strong></p><p><strong>送料＋合計金額</strong></p>
+      <p><strong>商品合計</strong></p><p><%= @order.about_orders.all.sum(:price) %></p>
+      <p><strong>送料</strong></p><p><%= @order.send_cost %></p></p>
+      <p><strong>請求金額合計</strong></p><p><strong><%= @order.about_orders.all.sum(:price) + @order.send_cost %></strong></p>
     </div>
   </div>
