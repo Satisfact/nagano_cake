@@ -1,4 +1,12 @@
 class ApplicationController < ActionController::Base
+  
+before_action :set_search
+
+def set_search
+  #@search = Article.search(params[:q])
+  @search = Item.ransack(params[:q]) #ransackメソッド推奨
+  @search_items = @search.result.page(params[:page])
+end
 
   protected
   #ifでsign_inをするときちんと飛ばない

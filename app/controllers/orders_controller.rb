@@ -84,6 +84,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @about_order = @order.about_orders
     #他顧客のアクセス阻止(念のため)
     unless current_customer.nil? || current_customer.id == @order.customer_id
       flash[:notice] = "アクセスできません"

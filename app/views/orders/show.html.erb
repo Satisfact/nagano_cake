@@ -9,19 +9,23 @@
       <table class="table table-bordered">
         <tr class="active">
           <th>注文日</th>
-          <td>dd/yy/mm</td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
           <th>配送先</th>
-          <td>どこそこどこそこどこ</td>
+          <td>
+            <%= @order.postcode %></br>
+            <%= @order.address %></br>
+            <%= @order.name %>
+          </td>
         </tr>
         <tr>
           <th>支払い方法</th>
-          <td>クレカ</td>
+          <td><%= @order.pay %></td>
         </tr>
         <tr>
           <th>ステータス</th>
-          <td>確認</td>
+          <td><%= @order.order_status %></td>
         </tr>
       </table>
     </div>
@@ -29,20 +33,20 @@
       <table class="table table-bordered">
         <tr class="active">
           <th>商品合計</th>
-          <td>¥111</td>
+          <td>￥<%= number_with_delimiter(@order.bill) %></td>
         </tr>
         <tr>
           <th>配送料</th>
-          <td>¥1111</td>
+          <td>￥<%= number_with_delimiter(@order.send_cost) %></td>
         </tr>
         <tr>
           <th><strong>ご請求額</strong></th>
-          <td>¥1111</td>
+          <td>￥<%= number_with_delimiter(@order.bill + @order.send_cost) %></td>
         </tr>
       </table>
     </div>
   </div>
-  
+
   <div class="row">
     <h4 class="under">注文内容</h4>
     <div class="col-md-7">
@@ -53,12 +57,14 @@
           <th>個数</th>
           <th>小計</th>
         </tr>
+        <% @about_order.each do |about_order| %>
         <tr>
-          <td><img src="" alt="">cake</td>
-          <td>¥price</td>
-          <td>amount</td>
-          <td>小計</td>
+          <td>￥<%= about_order.item.name %></td>
+          <td><%= number_with_delimiter(about_order.price) %></td>
+          <td><%= about_order.amount %></td>
+          <td><%= number_with_delimiter(about_order.price * about_order.amount) %></td>
         </tr>
+          <% end %>
       </table>
     </div>
   </div>
