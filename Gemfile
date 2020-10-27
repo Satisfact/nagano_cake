@@ -79,3 +79,4 @@ gem 'kaminari','~> 1.2.1'
 
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'ransack'

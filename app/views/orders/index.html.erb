@@ -1,64 +1,10 @@
-<style>
-  h2{
-    margin-bottom:50px;
-  }
-
-  table{
-  width: 100%;
-  border-collapse:separate;
-  border-spacing: 0;
-  }
-
-  table th:first-child{
-    border-radius: 5px 0 0 0;
-  }
-
-  table th:last-child{
-    border-radius: 0 5px 0 0;
-    border-right: 1px solid #3c6690;
-  }
-
-  table th{
-    text-align: center;
-    color:white;
-    background: linear-gradient(#829ebc,#225588);
-    border-left: 1px solid #3c6690;
-    border-top: 1px solid #3c6690;
-    border-bottom: 1px solid #3c6690;
-    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
-    width: auto;
-    padding: 10px 0;
-  }
-
-  table td{
-    text-align: center;
-    border-left: 1px solid #a8b7c5;
-    border-bottom: 1px solid #a8b7c5;
-    border-top:none;
-    box-shadow: 0px -3px 5px 1px #eee inset;
-    width: auto;
-    padding: 10px 0;
-  }
-
-  table td:last-child{
-    border-right: 1px solid #a8b7c5;
-  }
-
-  table tr:last-child td:first-child {
-    border-radius: 0 0 0 5px;
-  }
-
-  table tr:last-child td:last-child {
-    border-radius: 0 0 5px 0;
-  }
-</style>
 <div class="container">
   <div class="row">
-    <h2 class="col-md-3 col-md-offset-1"><span class="label label-default">　　注文履歴一覧　　</span></h2>
+    <h2 class="index col-md-3 col-md-offset-1"><span class="label label-default">　　注文履歴一覧　　</span></h2>
   </div>
   <div class="row">
-    <table>
-      <tr>
+    <table class="table table-bordered">
+      <tr class="active">
         <th>注文日</th>
         <th>配送先</th>
         <th>注文商品</th>
@@ -66,6 +12,7 @@
         <th>ステータス</th>
         <th>注文詳細</th> 
       </tr>
+<<<<<<< HEAD
       <tr>
         <% @orders.each do |order| %>
           <td>d<%= order.created_at.strftime('%Y/%m/%d') %></td>
@@ -76,6 +23,24 @@
           <td><%= link_to "表示する", item_order_path(order), class:"btn btn-primary btn-sm" %></td>
         <% end %>
       </tr>
+=======
+      <% @orders.each do |order| %>
+        <tr>
+          <!--注文を呼び出している-->
+          <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= order.address %></td>
+          <td>
+            <!--注文明細をeachで呼び出している-->
+            <% order.about_orders.each do |about_order| %>
+              <p><%= about_order.item.name %></p>
+            <% end %>
+          </td>
+          <td>¥<%= number_with_delimiter(order.bill) %></td>
+          <td><%= order.order_status %></td>
+          <td><%= link_to "表示する", order_path(order), class:"btn btn-primary btn-sm" %></td>
+        </tr>
+      <% end %>
+>>>>>>> origin/develop
     </table>
   </div>
 </div>

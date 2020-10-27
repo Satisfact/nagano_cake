@@ -36,9 +36,7 @@ class CartItemsController < ApplicationController
   def update
     @cart_item.update(cart_item_params)
     redirect_back(fallback_location: root_path)
-
   end
-
 
   private
   def cart_item_params
