@@ -52,9 +52,9 @@
           </ul>
         </nav>
         <dl class="window navbar-form navbar-left" role="search">
-          <%= search_form_for @search, url: items_path, class:"form-group" do |f| %>
-            <dt><%= f.text_field :name_cont, class:"form-control" %></dt>
-            <dd><%= f.submit ("検索") , class: 'btn btn-default'%></dd>
+          <%= search_form_for @q, url: items_path, class:"form-group" do |f| %>
+            <dt><%= f.search_field :name_cont, class:"form-control" %></dt>
+            <dd><%= f.submit "検索" , class: 'btn btn-default' %></dd>
           <% end %>
         </dl>
       </div>
