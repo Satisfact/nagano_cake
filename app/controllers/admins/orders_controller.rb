@@ -18,6 +18,6 @@ class Admins::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:customer_id, :postcode, :address, :name, :send_cost, :bill, :pay, :ordered_status)
+    params.require(:order).permit(:order_status)
   end
 end
