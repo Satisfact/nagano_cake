@@ -23,7 +23,7 @@
       <%= form_with model:@order, local:true do |f| %>
       <tr>
         <th>注文ステータス</th>
-          <td><%= @order.order_status %></td>
+          <td><%= f.select :order_status, Order.order_statuses.keys, :selected => Order.order_statuses[@order.order_status] %></td>
           <%= f.submit '更新' %>
       </tr>
       <% end %>
@@ -46,12 +46,13 @@
         <% @order.about_orders.each do |about_order| %>
         <tr>
           <td><%= about_order.item.name %></td>
-          <td><%= about_order.price %></td>
+          <td><%= number_with_delimiter(about_order.price) %></td>
           <td><%= about_order.amount %></td>
-          <td><%= @order.bill %></td>
+          <td><%= number_with_delimiter(@order.bill) %></td>
           <td>
             <%= form_with model:@order, local:true do |f| %>
-            <%= about_order.making_status %><% f.submit '更新' %>
+              <%= f.select :making_status, AboutOrder.making_statuses.keys, :selected => AboutOrder.making_statuses[about_order.making_status] %>
+              <%= f.submit '更新' %>
             <% end %>
           </td>
         </tr>
@@ -60,8 +61,8 @@
     </table>
     </div>
     <div class="col-xs-offset-1 col-xs-2">
-      <p><strong>商品合計</strong></p><p><%= @order.about_orders.all.sum(:price) %></p>
+      <p><strong>商品合計</strong></p><p><%= number_with_delimiter(@order.about_orders.all.sum(:price)) %></p>
       <p><strong>送料</strong></p><p><%= @order.send_cost %></p></p>
-      <p><strong>請求金額合計</strong></p><p><strong><%= @order.about_orders.all.sum(:price) + @order.send_cost %></strong></p>
+      <p><strong>請求金額合計</strong></p><p><strong><%= number_with_delimiter(@order.about_orders.all.sum(:price) + @order.send_cost) %></strong></p>
     </div>
   </div>
