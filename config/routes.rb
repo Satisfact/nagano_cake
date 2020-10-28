@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'about_orders/update'
  #管理者用ログインルート
   devise_for :admins, controllers:{
     sessions: 'admins/sessions'
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, except: [:delete]
     resources :orders, except: [:new,:create,:edit]
+    #制作ステータスの更新
+    resources :about_orders, only:[:update]
   end
 
   #カートアイテム
