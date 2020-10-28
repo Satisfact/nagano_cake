@@ -50,7 +50,7 @@
           <td><%= about_order.amount %></td>
           <td><%= number_with_delimiter(@order.bill) %></td>
           <td>
-            <%= form_with model:@about_orders, url:admins_order_path, local:true do |f| %>
+            <%= form_with model:about_order, url:admins_order_path, local:true do |f| %>
               <%= f.select :making_status, AboutOrder.making_statuses.keys, :selected => AboutOrder.making_statuses[about_order.making_status] %>
               <%= f.submit '更新' %>
             <% end %>
