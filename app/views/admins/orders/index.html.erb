@@ -18,7 +18,7 @@
           <tr>
             <td>
               <%= link_to admins_order_path(order) do %>
-                <%= order.created_at %>
+                <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
               <% end %>
             </td>
             <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
@@ -32,21 +32,3 @@
     </div>
   </div>
 </div>
-<table>
-      <tr>
-        <th>購入者</th>
-        <td>@order.名前</td>
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <td>@order.住所</td>
-      </tr>
-      <tr>
-        <th>支払い方法</th>
-        <td>@order.銀行</td>
-      </tr>
-      <tr>
-        <th>注文ステータス</th>
-        <td>@order.入金</td>
-      </tr>
-    </table>
